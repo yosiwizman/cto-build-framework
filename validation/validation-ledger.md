@@ -29,7 +29,7 @@ For artifact requirements before a status change, see [How the Matrix Updates](.
 
 | Domain | Current Status | Last Validation Run | Evidence Packet | Reviewer Verdict | Simulation Coverage | Notes / Limits |
 |--------|---------------|---------------------|-----------------|-----------------|--------------------|--------------:|
-| CRUD / Local-State Applications | **Validated** | None on file (run pre-dates template) | [`validation/evidence-packets/task-tracker-client-side-crud.md`](./evidence-packets/task-tracker-client-side-crud.md) — filed 2026-03-16; packet incomplete (screenshots not in repo, no reviewer verdict) | None on file | No | Proven for localStorage, single-page, client-side only. No backend, no server persistence. |
+| CRUD / Local-State Applications | **Validated** | None on file (run pre-dates template) | [`validation/evidence-packets/task-tracker-client-side-crud.md`](./evidence-packets/task-tracker-client-side-crud.md) — filed 2026-03-16; packet incomplete (screenshots not in repo) | [`validation/reviews/crud-local-state-task-tracker-review-2026-03-16.md`](./reviews/crud-local-state-task-tracker-review-2026-03-16.md) — PARTIAL — documentation review only; human re-execution not yet on file | No | Proven for localStorage, single-page, client-side only. No backend, no server persistence. |
 | Client-Side Multi-Page Apps | **Validated** | None on file (run pre-dates template) | [`validation/evidence-packets/contact-manager-client-side-multipage.md`](./evidence-packets/contact-manager-client-side-multipage.md) — filed 2026-03-16; packet incomplete (screenshots not in repo, no reviewer verdict) | None on file | No | Proven for hash routing, shared state, multi-view apps. Client-side only. |
 | Search / Filtering | **Validated** | None on file | [`validation/evidence-packets/contact-manager-search-filtering.md`](./evidence-packets/contact-manager-search-filtering.md) — filed 2026-03-16; packet incomplete (screenshots not in repo, no reviewer verdict) | None on file | No | Real-time search and category filtering proven within Class 2 pilot scope. |
 | Form Validation | **Validated** | None on file | [`validation/evidence-packets/contact-manager-form-validation.md`](./evidence-packets/contact-manager-form-validation.md) — filed 2026-03-16; packet incomplete (screenshots not in repo, no reviewer verdict) | None on file | No | Client-side email format validation proven. No server-side validation tested. |
@@ -54,12 +54,13 @@ The following work is required to bring the existing Validated domain evidence i
 
 | Task | Domain | Priority | Status |
 |------|--------|---------|--------|
-| File canonical evidence packet for CRUD / Local-State pilot | CRUD / Local-State | High | Filed (incomplete) — `validation/evidence-packets/task-tracker-client-side-crud.md` — gaps: screenshots not in repo, no reviewer verdict |
+| File canonical evidence packet for CRUD / Local-State pilot | CRUD / Local-State | High | Filed (incomplete) — `validation/evidence-packets/task-tracker-client-side-crud.md` — gaps: screenshots not in repo; documentation review filed at PARTIAL |
 | File canonical evidence packet for Client-Side Multi-Page pilot | Client-Side Multi-Page | High | Filed (incomplete) — `validation/evidence-packets/contact-manager-client-side-multipage.md` — gaps: screenshots not in repo, no reviewer verdict |
 | File canonical evidence packet for Search / Filtering (from Class 2 pilot) | Search / Filtering | High | Filed (incomplete) — `validation/evidence-packets/contact-manager-search-filtering.md` — gaps: screenshots not in repo, no reviewer verdict |
 | File canonical evidence packet for Form Validation (from Class 2 pilot) | Form Validation | Medium | Filed (incomplete) — `validation/evidence-packets/contact-manager-form-validation.md` — gaps: screenshots not in repo, no reviewer verdict |
 | File canonical evidence packet for Responsive UI (from both pilots) | Responsive UI | Medium | Filed (incomplete) — `validation/evidence-packets/responsive-ui-both-pilots.md` — gaps: screenshots not in repo, device names/OS/browser not recorded, no reviewer verdict |
 | Conduct and log first multi-session continuity validation run | Multi-Session Continuity | High | Not started |
+| Complete independent human review of Task Tracker — re-execute software against all 10 requirements | CRUD / Local-State | Medium | Not started — documentation review filed; human re-execution outstanding |
 
 ---
 
@@ -76,4 +77,4 @@ Do not update this ledger without an artifact. The ledger reflects what exists, 
 
 ---
 
-_Last updated: 2026-03-16. Updated: Responsive UI evidence packet filed (incomplete) — derived from both pilots. All five validated domain backlog items now have filed packets. Maintained as a living document — updated only when artifacts are filed._
+_Last updated: 2026-03-16. Updated: First reviewer verdict filed for CRUD / Local-State domain — documentation review, PARTIAL verdict. Human re-execution outstanding. Maintained as a living document — updated only when artifacts are filed._
