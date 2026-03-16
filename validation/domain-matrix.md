@@ -38,3 +38,16 @@ When a project in an untested domain passes through the full governance loop:
 2. The domain status is updated from Untested to Validated (or Partially Validated if conditions apply)
 3. The validated-domains.md document is updated with the evidence summary
 4. The proof boundary in the README is updated accordingly
+
+**Required artifact trail for any status change:**
+
+| Artifact | Required | Template |
+|---------|---------|---------|
+| Validation run log | Yes | `validation/templates/domain-validation-run-template.md` |
+| Evidence packet | Yes | `validation/templates/evidence-packet-template.md` |
+| Reviewer verdict | Yes (Proven status requires independent review) | `validation/templates/reviewer-verdict-template.md` |
+| Simulation log | Required for Partially Validated or above in recovery-sensitive domains | `validation/templates/simulation-log-template.md` |
+
+No status change is accepted without the evidence packet and reviewer verdict filed in `validation/evidence-packets/` and `validation/reviews/` respectively.
+
+See the high-level status ledger at [`validation-ledger.md`](./validation-ledger.md) for current state across all domains including artifact filing status.

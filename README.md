@@ -140,6 +140,23 @@ The validation program follows a structured expansion path:
 
 Each successful project in a new domain extends the proof boundary. The validation roadmap in [`/roadmap`](./roadmap/) documents the specific evidence requirements for each domain.
 
+## Validation Evidence Infrastructure
+
+Documentation in this repository is not the same as validation evidence. The governance model is documented. Whether it works in a given domain is determined by structured validation runs with founder-verified evidence on file.
+
+The validation evidence infrastructure lives in [`/validation`](./validation/):
+
+| Path | Purpose |
+|------|---------|
+| [`/validation/validation-ledger.md`](./validation/validation-ledger.md) | High-level status ledger — current state of all domains across the full evidence chain |
+| [`/validation/templates/`](./validation/templates/) | Canonical templates for validation runs, evidence packets, simulation logs, and reviewer verdicts |
+| [`/validation/runs/`](./validation/runs/) | Filed validation run logs (one per domain pilot) |
+| [`/validation/evidence-packets/`](./validation/evidence-packets/) | Canonical evidence packets for proof claims |
+| [`/validation/reviews/`](./validation/reviews/) | Reviewer verdict records |
+| [`/validation/simulations/`](./validation/simulations/) | Rollback and recovery simulation logs |
+
+The validation ledger is the first place to check for current domain status. It is updated only when a corresponding artifact exists — not by assertion.
+
 ## Contribution and Experiment Policy
 
 This repository tracks a live validation program. Contributions are welcome under strict evidence standards.
