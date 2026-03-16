@@ -16,3 +16,8 @@ package-lock.json
 dist/
 build/
 *.log
+
+# Local Claude Code and workflow artifacts
+.claude/
+MAX_CTO_CHECKPOINT.md
+MAX_CTO_CHECKPOINT_PROMPT.md
