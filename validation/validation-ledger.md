@@ -30,9 +30,9 @@ For artifact requirements before a status change, see [How the Matrix Updates](.
 | Domain | Current Status | Last Validation Run | Evidence Packet | Reviewer Verdict | Simulation Coverage | Notes / Limits |
 |--------|---------------|---------------------|-----------------|-----------------|--------------------|--------------:|
 | CRUD / Local-State Applications | **Validated** | None on file (run pre-dates template) | [`validation/evidence-packets/task-tracker-client-side-crud.md`](./evidence-packets/task-tracker-client-side-crud.md) — filed 2026-03-16; packet incomplete (screenshots not in repo, no reviewer verdict) | None on file | No | Proven for localStorage, single-page, client-side only. No backend, no server persistence. |
-| Client-Side Multi-Page Apps | **Validated** | None on file (run pre-dates template) | None on file (evidence in `validation/validated-domains.md` + `pilots/contact-manager.md`) | None on file | No | Proven for hash routing, shared state, multi-view apps. Client-side only. |
-| Search / Filtering | **Validated** | None on file | None on file (evidence in `pilots/contact-manager.md`) | None on file | No | Real-time search and category filtering proven within Class 2 pilot scope. |
-| Form Validation | **Validated** | None on file | None on file (evidence in `pilots/contact-manager.md`) | None on file | No | Client-side email format validation proven. No server-side validation tested. |
+| Client-Side Multi-Page Apps | **Validated** | None on file (run pre-dates template) | [`validation/evidence-packets/contact-manager-client-side-multipage.md`](./evidence-packets/contact-manager-client-side-multipage.md) — filed 2026-03-16; packet incomplete (screenshots not in repo, no reviewer verdict) | None on file | No | Proven for hash routing, shared state, multi-view apps. Client-side only. |
+| Search / Filtering | **Validated** | None on file | [`validation/evidence-packets/contact-manager-search-filtering.md`](./evidence-packets/contact-manager-search-filtering.md) — filed 2026-03-16; packet incomplete (screenshots not in repo, no reviewer verdict) | None on file | No | Real-time search and category filtering proven within Class 2 pilot scope. |
+| Form Validation | **Validated** | None on file | [`validation/evidence-packets/contact-manager-form-validation.md`](./evidence-packets/contact-manager-form-validation.md) — filed 2026-03-16; packet incomplete (screenshots not in repo, no reviewer verdict) | None on file | No | Client-side email format validation proven. No server-side validation tested. |
 | Responsive UI (Desktop + Mobile) | **Validated** | None on file | None on file (evidence in `pilots/`) | None on file | No | Founder-verified on desktop and mobile. Specific breakpoints not formally documented. |
 | Multi-Session Continuity | **Partially Validated** | None on file | None on file | None on file | No | Handoff protocol designed and documented. No complete multi-session project run on file. |
 | Authentication / Authorization | **Untested** | None | None | None | No | Doctrine exists. No project built. Domain overlay designed but not exercised. |
@@ -55,9 +55,9 @@ The following work is required to bring the existing Validated domain evidence i
 | Task | Domain | Priority | Status |
 |------|--------|---------|--------|
 | File canonical evidence packet for CRUD / Local-State pilot | CRUD / Local-State | High | Filed (incomplete) — `validation/evidence-packets/task-tracker-client-side-crud.md` — gaps: screenshots not in repo, no reviewer verdict |
-| File canonical evidence packet for Client-Side Multi-Page pilot | Client-Side Multi-Page | High | Not started |
-| File canonical evidence packet for Search / Filtering (from Class 2 pilot) | Search / Filtering | High | Not started |
-| File canonical evidence packet for Form Validation (from Class 2 pilot) | Form Validation | Medium | Not started |
+| File canonical evidence packet for Client-Side Multi-Page pilot | Client-Side Multi-Page | High | Filed (incomplete) — `validation/evidence-packets/contact-manager-client-side-multipage.md` — gaps: screenshots not in repo, no reviewer verdict |
+| File canonical evidence packet for Search / Filtering (from Class 2 pilot) | Search / Filtering | High | Filed (incomplete) — `validation/evidence-packets/contact-manager-search-filtering.md` — gaps: screenshots not in repo, no reviewer verdict |
+| File canonical evidence packet for Form Validation (from Class 2 pilot) | Form Validation | Medium | Filed (incomplete) — `validation/evidence-packets/contact-manager-form-validation.md` — gaps: screenshots not in repo, no reviewer verdict |
 | File canonical evidence packet for Responsive UI (from both pilots) | Responsive UI | Medium | Not started |
 | Conduct and log first multi-session continuity validation run | Multi-Session Continuity | High | Not started |
 
@@ -76,4 +76,4 @@ Do not update this ledger without an artifact. The ledger reflects what exists, 
 
 ---
 
-_Last updated: 2026-03-16. Updated: Task Tracker CRUD evidence packet filed (incomplete). Maintained as a living document — updated only when artifacts are filed._
+_Last updated: 2026-03-16. Updated: Contact Manager evidence packets filed for Client-Side Multi-Page Apps, Search / Filtering, and Form Validation (all incomplete). Maintained as a living document — updated only when artifacts are filed._
