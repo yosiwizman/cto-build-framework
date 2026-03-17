@@ -56,10 +56,10 @@ This doctrine applies to the framework itself. See [Current Validation Status](#
 
 The core governance loop has been validated through two pilot projects:
 
-| Pilot | Class | Requirements | Result | Gate |
-|-------|-------|-------------|--------|------|
-| Task Tracker | Standard (Class 1) | 10 MUST | 10/10 Proven | PASS |
-| Contact Manager | Standard (Class 2) | 14 MUST | 14/14 Proven | PASS |
+| Pilot | Project Type | Requirements | Result | Gate |
+|-------|-------------|-------------|--------|------|
+| Pilot 1 — Task Tracker | Standard | 10 MUST | 10/10 Proven | PASS |
+| Pilot 2 — Contact Manager | Standard | 14 MUST | 14/14 Proven | PASS |
 
 Both pilots were client-side web applications with local storage, built and released under full governance. The core loop — from natural-language request through evidence-backed release — is validated for Standard-class projects.
 
