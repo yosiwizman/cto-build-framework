@@ -14,11 +14,11 @@ This document tracks the validation status of the CTO Build Framework across all
 
 | Domain | Status | Evidence Source | Notes |
 |--------|--------|----------------|-------|
-| CRUD / Local-State Applications | **Validated** | Class 1 pilot: task tracker (10/10 MUST) | Core loop proven |
-| Client-Side Multi-Page Apps | **Validated** | Class 2 pilot: contact manager (14/14 MUST) | Routing, shared state, multi-page navigation |
-| Search / Filtering | **Validated** | Class 2 pilot | Real-time search, category filtering proven |
-| Form Validation | **Validated** | Class 2 pilot | Email format validation proven |
-| Responsive UI (Desktop + Mobile) | **Validated** | Both pilots | Founder-verified on desktop and mobile |
+| CRUD / Local-State Applications | **Validated** | Pilot 1 — task tracker (10/10 MUST) | Core loop proven |
+| Client-Side Multi-Page Apps | **Validated** | Pilot 2 — contact manager (14/14 MUST) | Routing, shared state, multi-page navigation |
+| Search / Filtering | **Validated** | Pilot 2 — contact manager | Real-time search, category filtering proven |
+| Form Validation | **Validated** | Pilot 2 — contact manager | Email format validation proven |
+| Responsive UI (Desktop + Mobile) | **Validated** | Pilot 1 (task tracker) + Pilot 2 (contact manager) | Founder-verified on desktop and mobile |
 | Multi-Session Continuity | Partially Validated | Doctrine tested; both pilots completed in single sessions | Handoff protocol designed, not fully exercised |
 | Authentication / Authorization | Untested | Doctrine exists | Domain overlay designed, no project built |
 | Backend / API / Database | Untested | Doctrine exists | Architecture patterns documented |
@@ -35,9 +35,9 @@ This document tracks the validation status of the CTO Build Framework across all
 
 When a project in an untested domain passes through the full governance loop:
 1. The evidence packet is submitted and reviewed
-2. The domain status is updated from Untested to Validated (or Partially Validated if conditions apply)
-3. The validated-domains.md document is updated with the evidence summary
-4. The proof boundary in the README is updated accordingly
+2. The run is registered in `validation/validation-run-index.md` with all artifact links filled
+3. The domain status is updated from Untested to Validated (or Partially Validated if conditions apply)
+4. The domain row in `validation/validation-ledger.md` is updated to reflect the new status and evidence
 
 **Required artifact trail for any status change:**
 
