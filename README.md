@@ -69,10 +69,10 @@ The governance system is designed for broader domains (backend services, authent
 
 | Domain | Status | Evidence | Notes |
 |--------|--------|----------|-------|
-| CRUD / Local-State Applications | **Validated** | Class 1 pilot: task tracker (10/10 MUST proven) | Core governance loop proven |
-| Client-Side Multi-Page Apps | **Validated** | Class 2 pilot: contact manager (14/14 MUST proven) | Multi-page routing, shared state |
-| Search / Filtering | **Validated** | Class 2 pilot: real-time search, category filtering | Proven within client-side scope |
-| Form Validation | **Validated** | Class 2 pilot: email format validation | Client-side validation proven |
+| CRUD / Local-State Applications | **Validated** | Pilot 1 — Task Tracker (10/10 MUST proven) | Core governance loop proven |
+| Client-Side Multi-Page Apps | **Validated** | Pilot 2 — Contact Manager (14/14 MUST proven) | Multi-page routing, shared state |
+| Search / Filtering | **Validated** | Pilot 2 — Contact Manager: real-time search, category filtering | Proven within client-side scope |
+| Form Validation | **Validated** | Pilot 2 — Contact Manager: email format validation | Client-side validation proven |
 | Responsive UI | **Validated** | Both pilots: founder-verified on desktop and mobile | Cross-device verification proven |
 | Authentication Systems | Untested | Doctrine exists. No project built under governance. | Domain overlay designed |
 | Backend / API Services | Untested | Doctrine exists. No project built under governance. | Architecture patterns documented |
