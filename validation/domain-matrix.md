@@ -54,6 +54,38 @@ See the high-level status ledger at [`validation-ledger.md`](./validation-ledger
 
 ---
 
+## Re-Execution Requirement for Full Validation
+
+Documentation review — checking that evidence packets, pilot records, and domain matrix entries are internally consistent — may only establish a **PARTIAL** verdict. It does not confirm that the software is reproducibly executable by a party other than the original build operator.
+
+**Full Validated status requires independent re-execution proof.**
+
+### Re-Execution Proof Defined
+
+An independent re-execution proof is a Class 3 validation run that satisfies all of the following:
+
+- **Same specification:** The run follows the exact MUST requirements from the original pilot — same feature scope, same acceptance criteria
+- **Independent operator:** The run is performed by a party other than the original build operator
+- **Live execution:** The software is actually run and exercised against each MUST requirement — documentation review is not sufficient
+- **Complete artifact trail:** The run produces a run log, evidence packet, and reviewer verdict, filed independently in `validation/runs/`, `validation/evidence-packets/`, and `validation/reviews/`
+- **Artifact class declared:** The run log and evidence packet must declare artifact class per the Artifact Classification section below
+
+### Status Boundaries
+
+| Evidence Available | Maximum Achievable Status |
+|-------------------|--------------------------|
+| Pilot record and documentation only | Partially Validated |
+| Documentation review (cross-reference of filed artifacts) | PARTIAL reviewer verdict only |
+| Documentation review + independent re-execution proof | Validated |
+
+### Rule
+
+No domain may be upgraded to **Validated** through documentation review alone. A reviewer verdict of PARTIAL is the ceiling when independent re-execution proof is not on file.
+
+**Note on current Validated entries:** Domains currently marked Validated in the matrix above reflect evidence produced under pilots that predate this formal re-execution requirement. Their reviewer verdicts are on file and reflect the evidence available at time of review. This rule governs all future status changes — no domain may be newly assigned Validated status without a filed re-execution proof.
+
+---
+
 ## Artifact Classification
 
 All artifacts associated with this validation program fall into exactly one of three classes. Classes must not be mixed in validation claims.
