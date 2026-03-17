@@ -1,0 +1,68 @@
+{
+  "runId": "responsive-002",
+  "date": "2026-03-17",
+  "sourceClass": "Class 2 — Reconstructed Artifact",
+  "resultClass": "Class 3 — New Execution Evidence from Reconstructed Source",
+  "tool": "Playwright 1.58.2 / Chromium-1208 headless",
+  "nodeVersion": "v22.17.1",
+  "playwrightVersion": "1.58.2",
+  "desktopViewport": "1440x900",
+  "mobileViewport": "390x844 (isMobile=true, deviceScaleFactor=3)",
+  "taskTrackerSource": "C:/Users/yosiw/cto-build-framework/reconstructed-apps/task-tracker-reconstructed.html",
+  "contactManagerSource": "C:/Users/yosiw/cto-build-framework/reconstructed-apps/contact-manager-reconstructed.html",
+  "chromiumExecutable": "C:/Users/yosiw/AppData/Local/ms-playwright/chromium-1208/chrome-win64/chrome.exe",
+  "overflowCheckMethod": "document.documentElement.scrollWidth > document.documentElement.clientWidth",
+  "results": {
+    "TT-D-1": {
+      "pass": true,
+      "overflow": false,
+      "note": "TT desktop 1440x900 initial load viewport screenshot"
+    },
+    "TT-D-2": {
+      "pass": true,
+      "overflow": false,
+      "note": "TT desktop 1440x900 full-page / empty task list"
+    },
+    "TT-M-1": {
+      "pass": true,
+      "overflow": false,
+      "note": "TT mobile 390x844 initial load viewport screenshot"
+    },
+    "TT-M-2": {
+      "pass": true,
+      "overflow": false,
+      "note": "TT mobile 390x844 full-page / empty task list"
+    },
+    "CM-D-1": {
+      "pass": true,
+      "overflow": false,
+      "note": "CM desktop 1440x900 contact list empty state"
+    },
+    "CM-D-3": {
+      "pass": true,
+      "overflow": false,
+      "note": "CM desktop 1440x900 add contact form"
+    },
+    "CM-D-2": {
+      "pass": true,
+      "overflow": false,
+      "note": "CM desktop contact detail (via list click), hash=#detail/mmuzwp9k357inz89eim"
+    },
+    "CM-M-1": {
+      "pass": true,
+      "overflow": false,
+      "note": "CM mobile 390x844 contact list empty state"
+    },
+    "CM-M-3": {
+      "pass": true,
+      "overflow": false,
+      "note": "CM mobile 390x844 add contact form"
+    },
+    "CM-M-2": {
+      "pass": true,
+      "overflow": false,
+      "note": "CM mobile contact detail via list click"
+    }
+  },
+  "overallPass": true
+}
