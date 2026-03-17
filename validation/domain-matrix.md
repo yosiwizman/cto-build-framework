@@ -34,9 +34,9 @@ This document tracks the validation status of the CTO Build Framework across all
 ## How the Matrix Updates
 
 When a project in an untested domain passes through the full governance loop:
-1. The evidence packet is submitted and reviewed
-2. The run is registered in `validation/validation-run-index.md` with all artifact links filled
-3. The domain status is updated from Untested to Validated (or Partially Validated if conditions apply)
+1. The run is registered in `validation/validation-run-index.md` before execution begins — Status set to Planned
+2. The run is executed; artifacts (run log, evidence packet, reviewer verdict) are filed as each is completed; index links are filled in
+3. The domain status is updated from Untested to Validated (or Partially Validated if conditions apply) — only after the reviewer verdict is filed
 4. The domain row in `validation/validation-ledger.md` is updated to reflect the new status and evidence
 
 **Required artifact trail for any status change:**
