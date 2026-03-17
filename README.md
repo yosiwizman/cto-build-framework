@@ -88,6 +88,8 @@ The governance system is designed for broader domains (backend services, authent
 
 See [`/validation`](./validation/) for detailed breakdowns of each category.
 
+> **Scope note:** The currently listed **Validated** domains reflect pilot evidence that predates the formal re-execution requirement now documented in `validation/domain-matrix.md`. Their current reviewer verdicts are **PARTIAL**, and independent re-execution remains outstanding. These rows are preserved as the current historical validation state; future Validated designations require independent re-execution proof.
+
 ## Validation Methodology
 
 A domain moves from **Untested** to **Validated** only when:
