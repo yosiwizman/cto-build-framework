@@ -12,7 +12,7 @@
 | Field | Value |
 |-------|-------|
 | Domain | Responsive UI (Desktop + Mobile) |
-| Project | Task Tracker (Class 1) + Contact Manager (Class 2) — both re-executed in this run |
+| Project | Pilot 1 — Task Tracker + Pilot 2 — Contact Manager — both re-executed in this run |
 | Project Class | Standard |
 | Run Date | **NOT YET EXECUTED — fill in when run is performed** |
 | Operator | **Fill in: name of person performing the test** |
@@ -33,7 +33,26 @@ The reviewer verdict explicitly states:
 
 > "For this domain specifically, a new controlled verification with documented environment is more valuable than filing the original screenshots alone."
 
-This run addresses that gap by conducting a fresh, documented verification on named devices with recorded environment details.
+This run addresses that gap by conducting a fresh, documented verification on named devices with recorded environment details. Because the original HTML files are not currently filed in this repository, this run is executed against the reconstructed versions (`reconstructed-apps/`). It produces standalone Class 3 evidence under full artifact classification rules — it does not close or modify the original pilot evidence packet.
+
+---
+
+## Artifact Classification
+
+| Field | Value |
+|-------|-------|
+| Source Artifact Class | **Class 2 — Reconstructed Artifact** |
+| Result Artifact Class | **Class 3 — New Execution Evidence from Reconstructed Source** |
+
+**Source artifacts used in this run:**
+- Task Tracker: `reconstructed-apps/task-tracker-reconstructed.html`
+- Contact Manager: `reconstructed-apps/contact-manager-reconstructed.html`
+
+**Why Class 2 source:** The original pilot HTML files (Task Tracker and Contact Manager as delivered at the end of their respective governance runs) are not filed in this repository. The only application files currently available in the repo are the reconstructed versions in `reconstructed-apps/`. These are Class 2 — Reconstructed Artifacts per the classification rules in `validation/domain-matrix.md`.
+
+**Rule:** All artifacts filed from this run — run log, evidence packet, reviewer verdict — must declare Class 2 source / Class 3 result. This run must not be treated or cited as a Class 1-source run.
+
+**What this means for evidence claims:** Results from this run confirm responsive layout behavior of the reconstructed versions of both applications on named devices. They cannot be used to upgrade, confirm, or close gaps in the original pilot evidence packets (`validation/evidence-packets/responsive-ui-both-pilots.md`). This run produces standalone new Class 3 evidence only.
 
 ---
 
@@ -102,8 +121,12 @@ Both applications were built with responsive layouts as a named MUST requirement
 
 - AI model / version: Not applicable — this is a human verification run, not a build run
 - Editor / coding tool: Not applicable
-- Build tool: Not applicable — both applications are pre-built; open the existing files directly
-- Test method: Manual human verification — open each application, check layout at desktop and mobile viewport, capture screenshots
+- Build tool: Not applicable — both applications are pre-built; open exactly these two files in a browser:
+  - Task Tracker: `reconstructed-apps/task-tracker-reconstructed.html`
+  - Contact Manager: `reconstructed-apps/contact-manager-reconstructed.html`
+  - To open: in your browser, go to File > Open File (or drag the file into the browser window). No server or technical setup is required.
+  - **Important:** These are Class 2 reconstructed artifacts. Do not use any other HTML file. Do not search the internet for these applications. The files are inside this repository at the paths shown above.
+- Test method: Manual human verification — open each file, check layout at desktop and mobile viewport, capture screenshots
 
 ---
 
@@ -124,7 +147,7 @@ Both applications were built with responsive layouts as a named MUST requirement
 
 | Risk | Likelihood | Mitigation |
 |------|-----------|------------|
-| Application files may need to be opened locally or via a server — setup method unknown | Medium | Open `index.html` directly in browser, or run a simple local server if required; record which method was used |
+| Application files are HTML files opened directly in a browser — no server required | Low | Open `reconstructed-apps/task-tracker-reconstructed.html` and `reconstructed-apps/contact-manager-reconstructed.html` by using File > Open in your browser or dragging the file into the browser window; record in Section 4 whether you used the file:// method or a local server |
 | Layout may have changed since original pilot if source files were modified | Low | Record commit hash (Section 4) so the exact software state is known |
 | Mobile browser may not match original verification browser | Low | Record the browser used; claim is bounded to "verified on [device] with [browser]" — not to a universal mobile claim |
 | Screenshots may not clearly show the responsive behavior | Low | Take full-page screenshots and note the viewport width in the screenshot filename |
@@ -301,7 +324,7 @@ After this run is complete — all checks performed, environment details recorde
 | 3 | Fill in Section 11 (Artifact Links) with actual screenshot file paths | This file |
 | 4 | Fill in Section 12 (Verdict) | This file |
 | 5 | File all screenshots to `validation/screenshots/responsive-ui-reexecution/` using the naming convention in Section 11 | New directory + files |
-| 6 | Update `validation/evidence-packets/responsive-ui-both-pilots.md` — add filed device details to Section 5 (Founder Verification) and update Section 3 (Artifact List) to include screenshots | `validation/evidence-packets/responsive-ui-both-pilots.md` |
+| 6 | Create a **new standalone evidence packet** for this run at `validation/evidence-packets/responsive-ui-reexecution-[DATE].md` (replace `[DATE]` with the run date in YYYY-MM-DD format — e.g., `responsive-ui-reexecution-2026-04-15.md`). Use the template at `validation/templates/evidence-packet-template.md`. This packet must declare Class 2 source / Class 3 result and must stand alone. **Do not merge into or update the original pilot evidence packet** (`validation/evidence-packets/responsive-ui-both-pilots.md`) — that file preserves the pre-reexecution historical state with acknowledged gaps. This run's evidence is independent Class 3 evidence only. | `validation/evidence-packets/responsive-ui-reexecution-[DATE].md` (new file) |
 | 7 | File a new reviewer verdict at `validation/reviews/responsive-ui-human-reexecution-[DATE].md` — this is a human re-execution verdict, not a documentation review; it supersedes the PARTIAL documentation verdict | New file |
 | 8 | Update `validation/validation-ledger.md` — update the Responsive UI backlog row for independent human re-execution from "Not started" to "Complete" and link the new run file | `validation/validation-ledger.md` |
 | 9 | Update `validation/domain-matrix.md` if the new run produces evidence that warrants a status note update | `validation/domain-matrix.md` |
