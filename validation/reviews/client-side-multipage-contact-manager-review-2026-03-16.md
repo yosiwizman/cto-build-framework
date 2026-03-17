@@ -71,8 +71,8 @@ Proven status is confirmed at the assertion level based on the pilot record. The
 | Founder device and browser details not recorded | Non-blocking | Document as accepted limit; low impact for client-side scope |
 | Software version / commit hash not captured at gate time | Non-blocking | Document as accepted limit; pre-dates version-binding practice |
 | No independent human re-execution of the software | Non-blocking for current status | This review does not substitute for a human running and testing the software independently; noted as a remaining gap |
-| Bootstrap interview conducted before build began | Positive finding | No action required — additional governance step not present in Class 1 pilot; strengthens discipline record |
-| Zero scope drift across 15 explicitly excluded features | Positive finding | No action required — out-of-scope boundary held precisely; stronger governance record than Class 1 |
+| Bootstrap interview conducted before build began | Positive finding | No action required — additional governance step not present in Pilot 1; strengthens discipline record |
+| Zero scope drift across 15 explicitly excluded features | Positive finding | No action required — out-of-scope boundary held precisely; stronger governance record than Pilot 1 |
 | Packet self-assessment (Section 10) correctly marks itself as incomplete | Positive finding | No action required — honesty of packet is confirmed |
 | Proof-boundary note (Section 8) accurately constrains the claim | Positive finding | No action required — boundary is clear, hash-routing and localStorage scope are correctly stated |
 | Packet correctly notes that Search/Filtering and Form Validation domain packets also draw from this pilot | Positive finding | No action required — cross-domain tracking is accurate |
@@ -103,7 +103,7 @@ Proven status is confirmed at the assertion level based on the pilot record. The
 
 1. The evidence packet accurately represents what is on file in this repository. The pilot record is internally consistent across all 14 requirements. The gate scores and verdict are plausible and consistent with the requirement set. No overclaiming was detected. The packet is acceptable as a filed-but-incomplete proof artifact.
 
-2. The Contact Manager pilot has a stronger governance record than the Class 1 pilot in two observable ways: a bootstrap interview was conducted to resolve ambiguities before building began, and 15 explicitly excluded features remained out of scope throughout the build. Both of these are observable from the pilot record and represent meaningful governance discipline. They do not resolve the missing artifact gaps, but they are noted as positive indicators.
+2. The Contact Manager pilot has a stronger governance record than Pilot 1 in two observable ways: a bootstrap interview was conducted to resolve ambiguities before building began, and 15 explicitly excluded features remained out of scope throughout the build. Both of these are observable from the pilot record and represent meaningful governance discipline. They do not resolve the missing artifact gaps, but they are noted as positive indicators.
 
 3. The domain status (Validated) is not challenged by this review — the gate PASS and founder verification are asserted and consistent. However, the evidence chain is structurally incomplete: physical verification artifacts are not present in this repository, and no independent human reviewer has re-executed the software.
 

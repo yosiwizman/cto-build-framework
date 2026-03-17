@@ -123,7 +123,7 @@ The CTO Build Framework governance loop produces verifiable, founder-verified ou
 **What does this evidence NOT prove?**
 
 - That the framework works for any project requiring a server, database, or API
-- That the framework works for multi-page applications (covered by the separate Class 2 pilot)
+- That the framework works for multi-page applications (covered by the separate Pilot 2 — contact manager)
 - That multi-session builds will produce the same results (this pilot was completed in one session)
 - That the framework works for any domain not yet validated (see `validation/domain-matrix.md`)
 - That the governance loop eliminates all errors or guarantees success in future projects

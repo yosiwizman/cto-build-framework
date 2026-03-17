@@ -1,6 +1,6 @@
 # Evidence Packet — Contact Manager / Form Validation
 
-> **Packet type:** Formalization of pre-template evidence. This packet covers the Form Validation domain contribution from the Contact Manager Class 2 pilot. The underlying pilot and gate occurred before this evidence infrastructure existed. Fields marked "Not on file" reflect honest gaps.
+> **Packet type:** Formalization of pre-template evidence. This packet covers the Form Validation domain contribution from the Contact Manager pilot (Pilot 2). The underlying pilot and gate occurred before this evidence infrastructure existed. Fields marked "Not on file" reflect honest gaps.
 
 ---
 
@@ -10,7 +10,7 @@
 |-------|-------|
 | Claim being proven | The CTO Build Framework governance loop works for client-side form validation features, specifically email format validation |
 | Domain | Form Validation |
-| Project | Contact Manager (Class 2 Pilot) — requirement R-09 |
+| Project | Contact Manager (Pilot 2) — requirement R-09 |
 | Software version at time of evidence capture | Not on file — no commit hash or version tag captured at gate time |
 | Date evidence captured | Not on file — pilot pre-dates the evidence template system |
 | Evidence captured by | Founding operator (name not formally recorded in repo) |
@@ -21,7 +21,7 @@
 
 ## 1. The Claim
 
-Within the context of the Contact Manager Class 2 pilot, client-side email format validation was built under full governance and founder-verified. This feature was included in the release gate that produced a PASS verdict (Confidence: 27/35, Sufficiency: 15/20).
+Within the context of the Contact Manager pilot (Pilot 2), client-side email format validation was built under full governance and founder-verified. This feature was included in the release gate that produced a PASS verdict (Confidence: 27/35, Sufficiency: 15/20).
 
 Client-side form validation — specifically email format checking — is validated as a capability within Standard-class, client-side web applications.
 
@@ -47,7 +47,7 @@ This evidence is bounded by a single requirement: email format validation on the
 |---|---------|------|-------------|-----------------|
 | 1 | Contact Manager pilot documentation | Project record | Full requirements table including R-09, gate results | `pilots/contact-manager.md` |
 | 2 | Validated domains record — Form Validation entry | Domain evidence summary | States "Email format validation on contact forms, client-side input validation" was proven | `validation/validated-domains.md` |
-| 3 | Domain matrix entry | Status record | Form Validation listed as Validated, evidenced by Class 2 pilot | `validation/domain-matrix.md` |
+| 3 | Domain matrix entry | Status record | Form Validation listed as Validated, evidenced by Pilot 2 | `validation/domain-matrix.md` |
 | 4 | Parent evidence packet | Full pilot packet | Complete Contact Manager pilot evidence including all 14 requirements | `validation/evidence-packets/contact-manager-client-side-multipage.md` |
 | 5 | Screenshots and test records | Founder verification evidence | Described as "founder-verified with screenshots and test records on file" in `pilots/contact-manager.md` | **Not filed in this repository** — referenced as existing externally |
 

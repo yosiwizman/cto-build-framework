@@ -1,6 +1,6 @@
 # Evidence Packet — Contact Manager / Search / Filtering
 
-> **Packet type:** Formalization of pre-template evidence. This packet covers the Search / Filtering domain contribution from the Contact Manager Class 2 pilot. The underlying pilot and gate occurred before this evidence infrastructure existed. Fields marked "Not on file" reflect honest gaps.
+> **Packet type:** Formalization of pre-template evidence. This packet covers the Search / Filtering domain contribution from the Contact Manager pilot (Pilot 2). The underlying pilot and gate occurred before this evidence infrastructure existed. Fields marked "Not on file" reflect honest gaps.
 
 ---
 
@@ -10,7 +10,7 @@
 |-------|-------|
 | Claim being proven | The CTO Build Framework governance loop works for real-time search and category-based filtering features in a client-side web application |
 | Domain | Search / Filtering |
-| Project | Contact Manager (Class 2 Pilot) — requirements R-05 and R-06 |
+| Project | Contact Manager (Pilot 2) — requirements R-05 and R-06 |
 | Software version at time of evidence capture | Not on file — no commit hash or version tag captured at gate time |
 | Date evidence captured | Not on file — pilot pre-dates the evidence template system |
 | Evidence captured by | Founding operator (name not formally recorded in repo) |
@@ -21,7 +21,7 @@
 
 ## 1. The Claim
 
-Within the context of the Contact Manager Class 2 pilot, real-time search by name and company, category-based filtering, and combined search-plus-filter behavior were built under full governance and founder-verified. These features were included in the release gate that produced a PASS verdict (Confidence: 27/35, Sufficiency: 15/20).
+Within the context of the Contact Manager pilot (Pilot 2), real-time search by name and company, category-based filtering, and combined search-plus-filter behavior were built under full governance and founder-verified. These features were included in the release gate that produced a PASS verdict (Confidence: 27/35, Sufficiency: 15/20).
 
 Search and filtering are validated as capabilities within Standard-class, client-side, localStorage-backed applications.
 
@@ -47,7 +47,7 @@ This evidence is bounded by what was actually built and tested in R-05 and R-06 
 |---|---------|------|-------------|-----------------|
 | 1 | Contact Manager pilot documentation | Project record | Full requirements table including R-05 and R-06, gate results | `pilots/contact-manager.md` |
 | 2 | Validated domains record — Search / Filtering entry | Domain evidence summary | Narrative summary of what was proven for this domain | `validation/validated-domains.md` |
-| 3 | Domain matrix entry | Status record | Search / Filtering listed as Validated, evidenced by Class 2 pilot | `validation/domain-matrix.md` |
+| 3 | Domain matrix entry | Status record | Search / Filtering listed as Validated, evidenced by Pilot 2 | `validation/domain-matrix.md` |
 | 4 | Parent evidence packet | Full pilot packet | Complete Contact Manager pilot evidence including all 14 requirements | `validation/evidence-packets/contact-manager-client-side-multipage.md` |
 | 5 | Screenshots and test records | Founder verification evidence | Described as "founder-verified with screenshots and test records on file" in `pilots/contact-manager.md` | **Not filed in this repository** — referenced as existing externally |
 

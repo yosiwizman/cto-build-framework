@@ -23,7 +23,7 @@ This template enforces that boundary at the point of execution. If you are testi
 | Source Artifact Class | Class 2 — Reconstructed Artifact |
 | Source Artifact Path | (exact path, e.g., `reconstructed-apps/task-tracker-reconstructed.html`) |
 | Reconstructed Artifact Name | (filename, e.g., `task-tracker-reconstructed.html`) |
-| Original Pilot Referenced | (name of the pilot this artifact was reconstructed from, e.g., `Task Tracker — Class 1 pilot`) |
+| Original Pilot Referenced | (name of the pilot this artifact was reconstructed from, e.g., `Pilot 1 — task tracker`) |
 | Run Classification | Class 3 — New Execution Evidence from Reconstructed Source |
 | Execution Date | YYYY-MM-DD |
 
