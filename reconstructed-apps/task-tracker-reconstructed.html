@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Task Tracker — CTO OS v1.0 Pilot</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: #FAF8F5;
+    color: #2C2416;
+    min-height: 100vh;
+  }
+
+  .app {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem 5rem;
+  }
+
+  .header { margin-bottom: 2.25rem; }
+
+  .app-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.75rem;
+    font-weight: 400;
+    color: #2C2416;
+    line-height: 1.1;
+  }
+
+  .app-subtitle {
+    color: #8A7D6A;
+    margin-top: 0.3rem;
+    font-size: 1rem;
+  }
+
+  /* Add form */
+  .add-form {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    background: white;
+    border: 1.5px solid #E8E3DB;
+    border-radius: 16px;
+    padding: 0.875rem;
+    box-shadow: 0 1px 4px rgba(44,36,22,0.05);
+  }
+
+  .input-title {
+    flex: 1;
+    min-width: 140px;
+    padding: 0.6rem 0.875rem;
+    border: 1.5px solid #E0D9CE;
+    border-radius: 10px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    background: #FAF8F5;
+    color: #2C2416;
+    outline: none;
+    transition: border-color 0.15s;
+  }
+
+  .input-title::placeholder { color: #B0A490; }
+  .input-title:focus { border-color: #9B8B76; background: white; }
+
+  .input-date {
+    padding: 0.6rem 0.75rem;
+    border: 1.5px solid #E0D9CE;
+    border-radius: 10px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    background: #FAF8F5;
+    color: #2C2416;
+    outline: none;
+    transition: border-color 0.15s;
+  }
+
+  .input-date:focus { border-color: #9B8B76; background: white; }
+
+  .btn-add {
+    padding: 0.6rem 1.25rem;
+    background: #2C2416;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.15s;
+    white-space: nowrap;
+  }
+
+  .btn-add:hover { background: #3D3220; }
+  .btn-add:active { background: #1E180F; }
+
+  /* Filter pills */
+  .filter-bar {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.25rem;
+    flex-wrap: wrap;
+  }
+
+  .filter-pill {
+    padding: 0.4rem 1rem;
+    border: 1.5px solid #E0D9CE;
+    border-radius: 999px;
+    background: white;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.83rem;
+    color: #6B5F51;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .filter-pill.active {
+    background: #2C2416;
+    color: white;
+    border-color: #2C2416;
+  }
+
+  .filter-pill:hover:not(.active) {
+    border-color: #9B8B76;
+    background: #F5F1EB;
+  }
+
+  /* Task list */
+  .task-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .task-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.875rem 1rem;
+    background: white;
+    border: 1.5px solid #EDE8E0;
+    border-radius: 14px;
+    transition: border-color 0.15s, box-shadow 0.15s;
+    position: relative;
+  }
+
+  .task-item:hover {
+    border-color: #C4BAA8;
+    box-shadow: 0 2px 8px rgba(44,36,22,0.07);
+  }
+
+  .task-item.done { background: #FDFCFA; }
+  .task-item.done .task-title {
+    text-decoration: line-through;
+    color: #B0A490;
+  }
+
+  .task-item.overdue { border-color: #F0C8B8; }
+
+  /* Checkbox */
+  .checkbox {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    transition: transform 0.1s;
+  }
+
+  .checkbox:hover { transform: scale(1.1); }
+
+  .check-icon { width: 24px; height: 24px; }
+
+  /* Task body */
+  .task-body {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .task-title {
+    font-size: 0.95rem;
+    line-height: 1.4;
+    word-break: break-word;
+    color: #2C2416;
+  }
+
+  .task-due {
+    font-size: 0.78rem;
+    color: #8A7D6A;
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+  }
+
+  .task-due.overdue-label {
+    color: #C44020;
+    font-weight: 500;
+  }
+
+  /* Delete button */
+  .btn-delete-task {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.4rem;
+    line-height: 1;
+    color: #C4BAA8;
+    padding: 0 0.2rem;
+    opacity: 0;
+    transition: opacity 0.15s, color 0.15s;
+    flex-shrink: 0;
+  }
+
+  .task-item:hover .btn-delete-task { opacity: 1; }
+  .btn-delete-task:hover { color: #C44020; }
+
+  @media (hover: none) {
+    .btn-delete-task { opacity: 1; }
+  }
+
+  /* Empty state */
+  .empty-state {
+    text-align: center;
+    color: #9B8B76;
+    padding: 3.5rem 1rem;
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  /* Modal */
+  .modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(44,36,22,0.45);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    padding: 1rem;
+  }
+
+  .modal {
+    background: white;
+    border-radius: 20px;
+    padding: 2rem;
+    max-width: 360px;
+    width: 100%;
+    box-shadow: 0 24px 64px rgba(44,36,22,0.22);
+    animation: modal-in 0.18s ease;
+  }
+
+  @keyframes modal-in {
+    from { transform: scale(0.95); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+  }
+
+  .modal-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.3rem;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+    color: #2C2416;
+  }
+
+  .modal-text {
+    font-size: 0.92rem;
+    color: #6B5F51;
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+  }
+
+  .modal-text strong { color: #2C2416; }
+
+  .modal-actions {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: flex-end;
+  }
+
+  .btn-cancel {
+    padding: 0.6rem 1.25rem;
+    border: 1.5px solid #E0D9CE;
+    border-radius: 10px;
+    background: white;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    color: #6B5F51;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+
+  .btn-cancel:hover { background: #F5F1EB; }
+
+  .btn-confirm-delete {
+    padding: 0.6rem 1.25rem;
+    border: none;
+    border-radius: 10px;
+    background: #C44020;
+    color: white;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+
+  .btn-confirm-delete:hover { background: #A63018; }
+
+  /* Responsive */
+  @media (max-width: 500px) {
+    .app { padding: 1.5rem 1rem 4rem; }
+    .app-title { font-size: 2.25rem; }
+    .add-form { padding: 0.75rem; }
+    .input-title { min-width: 100%; }
+    .input-date { width: 100%; }
+    .btn-add { width: 100%; text-align: center; }
+  }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="module">
+import { createElement as h, useState, useEffect, useRef } from 'https://esm.sh/react@18.3.1';
+import { createRoot } from 'https://esm.sh/react-dom@18.3.1/client';
+
+const STORAGE_KEY = 'task-tracker-v1';
+
+function loadTasks() {
+  try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; }
+  catch { return []; }
+}
+
+function saveTasks(tasks) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
+}
+
+function genId() {
+  return Date.now().toString(36) + Math.random().toString(36).slice(2);
+}
+
+function isOverdue(task) {
+  if (!task.dueDate || task.done) return false;
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  return new Date(task.dueDate) < today;
+}
+
+function formatDate(dateStr) {
+  return new Date(dateStr + 'T00:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+}
+
+// ── CheckIcon ─────────────────────────────────────────────────────────────────
+function CheckIcon({ done }) {
+  if (done) {
+    return h('svg', { viewBox: '0 0 24 24', className: 'check-icon', 'aria-hidden': 'true' },
+      h('circle', { cx: 12, cy: 12, r: 10, fill: '#5A8A6A' }),
+      h('polyline', { points: '7,12 10,15 17,9', stroke: 'white', strokeWidth: 2.5, fill: 'none', strokeLinecap: 'round', strokeLinejoin: 'round' })
+    );
+  }
+  return h('svg', { viewBox: '0 0 24 24', className: 'check-icon', 'aria-hidden': 'true' },
+    h('circle', { cx: 12, cy: 12, r: 10, stroke: '#C4BAA8', strokeWidth: 2, fill: 'none' })
+  );
+}
+
+// ── ConfirmModal ───────────────────────────────────────────────────────────────
+function ConfirmModal({ taskTitle, onConfirm, onCancel }) {
+  useEffect(() => {
+    function onKey(e) { if (e.key === 'Escape') onCancel(); }
+    document.addEventListener('keydown', onKey);
+    return () => document.removeEventListener('keydown', onKey);
+  }, [onCancel]);
+
+  return h('div', { className: 'modal-backdrop', onClick: onCancel },
+    h('div', { className: 'modal', role: 'dialog', 'aria-modal': 'true', onClick: e => e.stopPropagation() },
+      h('p', { className: 'modal-title' }, 'Delete task?'),
+      h('p', { className: 'modal-text' },
+        'This will permanently remove ', h('strong', null, `"${taskTitle}"`), '.'
+      ),
+      h('div', { className: 'modal-actions' },
+        h('button', { className: 'btn-cancel', onClick: onCancel }, 'Cancel'),
+        h('button', { className: 'btn-confirm-delete', onClick: onConfirm, autoFocus: true }, 'Delete')
+      )
+    )
+  );
+}
+
+// ── TaskItem ───────────────────────────────────────────────────────────────────
+function TaskItem({ task, onToggle, onDeleteRequest }) {
+  const overdue = isOverdue(task);
+
+  return h('div', { className: `task-item${task.done ? ' done' : ''}${overdue ? ' overdue' : ''}` },
+    h('button', {
+      className: 'checkbox',
+      onClick: () => onToggle(task.id),
+      'aria-label': task.done ? 'Mark incomplete' : 'Mark complete',
+      title: task.done ? 'Mark incomplete' : 'Mark complete'
+    }, h(CheckIcon, { done: task.done })),
+
+    h('div', { className: 'task-body' },
+      h('span', { className: 'task-title' }, task.title),
+      task.dueDate && h('span', { className: `task-due${overdue ? ' overdue-label' : ''}` },
+        overdue && h('span', { 'aria-label': 'Overdue' }, '⚠ '),
+        formatDate(task.dueDate)
+      )
+    ),
+
+    h('button', {
+      className: 'btn-delete-task',
+      onClick: () => onDeleteRequest(task),
+      'aria-label': `Delete "${task.title}"`,
+      title: 'Delete task'
+    }, '×')
+  );
+}
+
+// ── AddTaskForm ────────────────────────────────────────────────────────────────
+function AddTaskForm({ onAdd }) {
+  const [title, setTitle] = useState('');
+  const [dueDate, setDueDate] = useState('');
+  const inputRef = useRef(null);
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    const t = title.trim();
+    if (!t) { inputRef.current?.focus(); return; }
+    onAdd({ id: genId(), title: t, dueDate, done: false, createdAt: Date.now() });
+    setTitle('');
+    setDueDate('');
+    inputRef.current?.focus();
+  }
+
+  return h('form', { className: 'add-form', onSubmit: handleSubmit },
+    h('input', {
+      ref: inputRef,
+      type: 'text',
+      className: 'input-title',
+      placeholder: 'Add a task…',
+      value: title,
+      onChange: e => setTitle(e.target.value),
+      'aria-label': 'Task title'
+    }),
+    h('input', {
+      type: 'date',
+      className: 'input-date',
+      value: dueDate,
+      onChange: e => setDueDate(e.target.value),
+      'aria-label': 'Due date (optional)',
+      title: 'Due date (optional)'
+    }),
+    h('button', { type: 'submit', className: 'btn-add' }, 'Add Task')
+  );
+}
+
+// ── App ────────────────────────────────────────────────────────────────────────
+function App() {
+  const [tasks, setTasks] = useState(loadTasks);
+  const [filter, setFilter] = useState('all');
+  const [deleteTarget, setDeleteTarget] = useState(null);
+
+  useEffect(() => { saveTasks(tasks); }, [tasks]);
+
+  function addTask(task) { setTasks(ts => [task, ...ts]); }
+
+  function toggleTask(id) {
+    setTasks(ts => ts.map(t => t.id === id ? { ...t, done: !t.done } : t));
+  }
+
+  function confirmDelete() {
+    if (!deleteTarget) return;
+    setTasks(ts => ts.filter(t => t.id !== deleteTarget.id));
+    setDeleteTarget(null);
+  }
+
+  const filtered = tasks.filter(t => {
+    if (filter === 'active') return !t.done;
+    if (filter === 'done') return t.done;
+    return true;
+  });
+
+  const counts = {
+    all: tasks.length,
+    active: tasks.filter(t => !t.done).length,
+    done: tasks.filter(t => t.done).length
+  };
+
+  const filterLabels = [
+    { key: 'all', label: `All (${counts.all})` },
+    { key: 'active', label: `Active (${counts.active})` },
+    { key: 'done', label: `Done (${counts.done})` }
+  ];
+
+  const emptyMessages = {
+    all: 'No tasks yet.\nAdd your first task above.',
+    active: 'No active tasks.\nEverything is done!',
+    done: 'No completed tasks yet.'
+  };
+
+  return h('div', { className: 'app' },
+    h('header', { className: 'header' },
+      h('h1', { className: 'app-title' }, 'Task Tracker'),
+      h('p', { className: 'app-subtitle' }, 'Stay on top of things.')
+    ),
+
+    h(AddTaskForm, { onAdd: addTask }),
+
+    h('div', { className: 'filter-bar', role: 'group', 'aria-label': 'Filter tasks' },
+      filterLabels.map(({ key, label }) =>
+        h('button', {
+          key,
+          className: `filter-pill${filter === key ? ' active' : ''}`,
+          onClick: () => setFilter(key),
+          'aria-pressed': filter === key
+        }, label)
+      )
+    ),
+
+    filtered.length === 0
+      ? h('p', { className: 'empty-state' }, emptyMessages[filter])
+      : h('div', { className: 'task-list', role: 'list' },
+          filtered.map(task =>
+            h(TaskItem, {
+              key: task.id,
+              task,
+              onToggle: toggleTask,
+              onDeleteRequest: setDeleteTarget
+            })
+          )
+        ),
+
+    deleteTarget && h(ConfirmModal, {
+      taskTitle: deleteTarget.title,
+      onConfirm: confirmDelete,
+      onCancel: () => setDeleteTarget(null)
+    })
+  );
+}
+
+createRoot(document.getElementById('root')).render(h(App, null));
+</script>
+</body>
+</html>

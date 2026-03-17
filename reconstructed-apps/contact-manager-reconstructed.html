@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Manager — CTO OS v1.0 Pilot</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: #FAF8F5;
+    color: #2C2416;
+    min-height: 100vh;
+  }
+
+  /* ── Layout ───────────────────────────────────────────────────────────── */
+  .page {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 2.25rem 1.5rem 5rem;
+  }
+
+  /* ── Top nav ──────────────────────────────────────────────────────────── */
+  .topbar {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+  }
+
+  .back-btn {
+    background: none;
+    border: 1.5px solid #E0D9CE;
+    border-radius: 10px;
+    padding: 0.45rem 0.875rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    color: #6B5F51;
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s;
+    white-space: nowrap;
+  }
+
+  .back-btn:hover { background: #F5F1EB; border-color: #C4BAA8; }
+
+  .page-heading {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: #2C2416;
+    line-height: 1.2;
+  }
+
+  /* ── Home header ──────────────────────────────────────────────────────── */
+  .home-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.75rem;
+    flex-wrap: wrap;
+  }
+
+  .home-title-block h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.75rem;
+    font-weight: 400;
+    color: #2C2416;
+    line-height: 1.1;
+  }
+
+  .home-title-block p {
+    color: #8A7D6A;
+    margin-top: 0.3rem;
+    font-size: 1rem;
+  }
+
+  .btn-primary {
+    padding: 0.65rem 1.25rem;
+    background: #2C2416;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.15s;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .btn-primary:hover { background: #3D3220; }
+
+  /* ── Search & filters ─────────────────────────────────────────────────── */
+  .search-box {
+    position: relative;
+    margin-bottom: 0.875rem;
+  }
+
+  .search-input {
+    width: 100%;
+    padding: 0.7rem 0.875rem 0.7rem 2.5rem;
+    border: 1.5px solid #E0D9CE;
+    border-radius: 12px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.92rem;
+    background: white;
+    color: #2C2416;
+    outline: none;
+    transition: border-color 0.15s;
+  }
+
+  .search-input::placeholder { color: #B0A490; }
+  .search-input:focus { border-color: #9B8B76; }
+
+  .search-icon {
+    position: absolute;
+    left: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 16px;
+    height: 16px;
+    color: #B0A490;
+    pointer-events: none;
+  }
+
+  .filter-bar {
+    display: flex;
+    gap: 0.45rem;
+    margin-bottom: 1.25rem;
+    flex-wrap: wrap;
+  }
+
+  .filter-pill {
+    padding: 0.38rem 0.875rem;
+    border: 1.5px solid #E0D9CE;
+    border-radius: 999px;
+    background: white;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.8rem;
+    color: #6B5F51;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .filter-pill.active { background: #2C2416; color: white; border-color: #2C2416; }
+  .filter-pill:hover:not(.active) { border-color: #9B8B76; background: #F5F1EB; }
+
+  /* ── Contact list ─────────────────────────────────────────────────────── */
+  .contact-list { display: flex; flex-direction: column; gap: 0.4rem; }
+
+  .contact-row {
+    display: flex;
+    align-items: center;
+    gap: 0.875rem;
+    padding: 0.875rem 1rem;
+    background: white;
+    border: 1.5px solid #EDE8E0;
+    border-radius: 14px;
+    cursor: pointer;
+    transition: border-color 0.15s, box-shadow 0.15s;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .contact-row:hover {
+    border-color: #C4BAA8;
+    box-shadow: 0 2px 8px rgba(44,36,22,0.07);
+  }
+
+  .avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 0.85rem;
+    flex-shrink: 0;
+    color: white;
+    letter-spacing: 0.02em;
+  }
+
+  .contact-info { flex: 1; min-width: 0; }
+
+  .contact-name {
+    font-size: 0.92rem;
+    font-weight: 500;
+    color: #2C2416;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .contact-company {
+    font-size: 0.78rem;
+    color: #8A7D6A;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .category-badge {
+    padding: 0.25rem 0.625rem;
+    border-radius: 999px;
+    font-size: 0.72rem;
+    font-weight: 500;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .chevron {
+    color: #C4BAA8;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+
+  /* ── Category colors ──────────────────────────────────────────────────── */
+  .cat-Lead { background: #FEF0E6; color: #C44020; }
+  .cat-Active-Client { background: #E8F4ED; color: #2E7D4F; }
+  .cat-Past-Client { background: #F0EDE8; color: #6B5F51; }
+  .cat-Partner { background: #E8EEF8; color: #2A5BA8; }
+  .cat-Personal { background: #F0EBF8; color: #6A35A0; }
+
+  /* ── Empty state ──────────────────────────────────────────────────────── */
+  .empty-state {
+    text-align: center;
+    color: #9B8B76;
+    padding: 3.5rem 1rem;
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  .empty-state-action {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.6rem 1.25rem;
+    background: #2C2416;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+
+  .empty-state-action:hover { background: #3D3220; }
+
+  /* ── Detail view ──────────────────────────────────────────────────────── */
+  .detail-avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 1.4rem;
+    color: white;
+    margin-bottom: 1rem;
+  }
+
+  .detail-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2rem;
+    font-weight: 400;
+    color: #2C2416;
+    line-height: 1.2;
+    margin-bottom: 0.3rem;
+  }
+
+  .detail-meta {
+    color: #8A7D6A;
+    font-size: 0.92rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .detail-fields {
+    background: white;
+    border: 1.5px solid #EDE8E0;
+    border-radius: 16px;
+    overflow: hidden;
+    margin: 1.25rem 0;
+  }
+
+  .detail-field {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 0.875rem 1.125rem;
+    border-bottom: 1px solid #F0EDE8;
+  }
+
+  .detail-field:last-child { border-bottom: none; }
+
+  .detail-label {
+    font-size: 0.78rem;
+    color: #9B8B76;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    min-width: 72px;
+    flex-shrink: 0;
+    padding-top: 0.1rem;
+  }
+
+  .detail-value {
+    font-size: 0.92rem;
+    color: #2C2416;
+    word-break: break-word;
+    line-height: 1.5;
+  }
+
+  .detail-value a {
+    color: #2A5BA8;
+    text-decoration: none;
+  }
+
+  .detail-value a:hover { text-decoration: underline; }
+
+  .detail-actions {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-secondary {
+    padding: 0.65rem 1.25rem;
+    border: 1.5px solid #E0D9CE;
+    border-radius: 12px;
+    background: white;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    color: #2C2416;
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s;
+    font-weight: 500;
+  }
+
+  .btn-secondary:hover { background: #F5F1EB; border-color: #C4BAA8; }
+
+  .btn-danger {
+    padding: 0.65rem 1.25rem;
+    border: none;
+    border-radius: 12px;
+    background: #FEF0E6;
+    color: #C44020;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+
+  .btn-danger:hover { background: #F9D8C8; }
+
+  /* ── Form ─────────────────────────────────────────────────────────────── */
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.125rem;
+  }
+
+  .form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .form-label {
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: #6B5F51;
+    letter-spacing: 0.02em;
+  }
+
+  .form-label .required {
+    color: #C44020;
+    margin-left: 0.15rem;
+  }
+
+  .form-input, .form-select, .form-textarea {
+    padding: 0.7rem 0.875rem;
+    border: 1.5px solid #E0D9CE;
+    border-radius: 11px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.92rem;
+    background: white;
+    color: #2C2416;
+    outline: none;
+    transition: border-color 0.15s;
+    width: 100%;
+  }
+
+  .form-input::placeholder,
+  .form-textarea::placeholder { color: #B0A490; }
+
+  .form-input:focus,
+  .form-select:focus,
+  .form-textarea:focus { border-color: #9B8B76; }
+
+  .form-input.error { border-color: #C44020; }
+
+  .form-error {
+    font-size: 0.78rem;
+    color: #C44020;
+    font-weight: 500;
+  }
+
+  .form-textarea {
+    resize: vertical;
+    min-height: 80px;
+  }
+
+  .form-select { cursor: pointer; }
+
+  .form-actions {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  /* ── Modal ────────────────────────────────────────────────────────────── */
+  .modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(44,36,22,0.45);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    padding: 1rem;
+  }
+
+  .modal {
+    background: white;
+    border-radius: 20px;
+    padding: 2rem;
+    max-width: 360px;
+    width: 100%;
+    box-shadow: 0 24px 64px rgba(44,36,22,0.22);
+    animation: modal-in 0.18s ease;
+  }
+
+  @keyframes modal-in {
+    from { transform: scale(0.95); opacity: 0; }
+    to   { transform: scale(1);   opacity: 1; }
+  }
+
+  .modal-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.3rem;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+    color: #2C2416;
+  }
+
+  .modal-text {
+    font-size: 0.92rem;
+    color: #6B5F51;
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+  }
+
+  .modal-text strong { color: #2C2416; }
+
+  .modal-actions {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: flex-end;
+  }
+
+  .btn-cancel {
+    padding: 0.6rem 1.25rem;
+    border: 1.5px solid #E0D9CE;
+    border-radius: 10px;
+    background: white;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    color: #6B5F51;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+
+  .btn-cancel:hover { background: #F5F1EB; }
+
+  .btn-confirm-delete {
+    padding: 0.6rem 1.25rem;
+    border: none;
+    border-radius: 10px;
+    background: #C44020;
+    color: white;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+
+  .btn-confirm-delete:hover { background: #A63018; }
+
+  /* ── Responsive ───────────────────────────────────────────────────────── */
+  @media (max-width: 500px) {
+    .page { padding: 1.5rem 1rem 4rem; }
+    .home-title-block h1 { font-size: 2.25rem; }
+    .home-header { flex-direction: column; align-items: flex-start; }
+    .btn-primary { width: 100%; text-align: center; }
+    .detail-actions { flex-direction: column; }
+    .detail-actions button,
+    .detail-actions .btn-secondary { width: 100%; text-align: center; }
+    .form-actions { flex-direction: column; }
+    .form-actions button { width: 100%; text-align: center; }
+    .detail-field { flex-direction: column; gap: 0.2rem; }
+    .detail-label { min-width: unset; }
+  }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="module">
+import { createElement as h, useState, useEffect, useCallback } from 'https://esm.sh/react@18.3.1';
+import { createRoot } from 'https://esm.sh/react-dom@18.3.1/client';
+
+// ── Constants ──────────────────────────────────────────────────────────────────
+const STORAGE_KEY = 'contact-manager-v1';
+
+const CATEGORIES = ['Lead', 'Active Client', 'Past Client', 'Partner', 'Personal'];
+
+const CAT_CLASS = {
+  'Lead':          'cat-Lead',
+  'Active Client': 'cat-Active-Client',
+  'Past Client':   'cat-Past-Client',
+  'Partner':       'cat-Partner',
+  'Personal':      'cat-Personal'
+};
+
+const AVATAR_COLORS = ['#C07A4A', '#5A8A6A', '#6A87B8', '#9060B0', '#A07848'];
+
+// ── Helpers ────────────────────────────────────────────────────────────────────
+function genId() {
+  return Date.now().toString(36) + Math.random().toString(36).slice(2);
+}
+
+function loadContacts() {
+  try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; }
+  catch { return []; }
+}
+
+function saveContacts(contacts) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(contacts));
+}
+
+function getInitials(name) {
+  const parts = (name || '').trim().split(/\s+/).filter(Boolean);
+  if (!parts.length) return '?';
+  if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase();
+  return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+}
+
+function getAvatarColor(name) {
+  let hash = 0;
+  for (const c of (name || '')) hash = (hash * 31 + c.charCodeAt(0)) | 0;
+  return AVATAR_COLORS[Math.abs(hash) % AVATAR_COLORS.length];
+}
+
+function isValidEmail(email) {
+  if (!email || !email.trim()) return true;
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
+}
+
+// ── Routing ────────────────────────────────────────────────────────────────────
+function useHash() {
+  const [hash, setHash] = useState(() => window.location.hash || '#list');
+  useEffect(() => {
+    const handler = () => setHash(window.location.hash || '#list');
+    window.addEventListener('hashchange', handler);
+    return () => window.removeEventListener('hashchange', handler);
+  }, []);
+  return hash;
+}
+
+function navigate(hash) { window.location.hash = hash; }
+
+function parseRoute(hash) {
+  if (!hash || hash === '#' || hash === '#list') return { view: 'list' };
+  if (hash === '#add') return { view: 'add' };
+  const dm = hash.match(/^#detail\/(.+)$/);
+  if (dm) return { view: 'detail', id: dm[1] };
+  const em = hash.match(/^#edit\/(.+)$/);
+  if (em) return { view: 'edit', id: em[1] };
+  return { view: 'list' };
+}
+
+// ── ConfirmModal ───────────────────────────────────────────────────────────────
+function ConfirmModal({ contactName, onConfirm, onCancel }) {
+  useEffect(() => {
+    const handler = e => { if (e.key === 'Escape') onCancel(); };
+    document.addEventListener('keydown', handler);
+    return () => document.removeEventListener('keydown', handler);
+  }, [onCancel]);
+
+  return h('div', { className: 'modal-backdrop', onClick: onCancel },
+    h('div', { className: 'modal', role: 'dialog', 'aria-modal': 'true', onClick: e => e.stopPropagation() },
+      h('p', { className: 'modal-title' }, 'Delete contact?'),
+      h('p', { className: 'modal-text' },
+        'This will permanently remove ', h('strong', null, contactName), '.'
+      ),
+      h('div', { className: 'modal-actions' },
+        h('button', { className: 'btn-cancel', onClick: onCancel }, 'Cancel'),
+        h('button', { className: 'btn-confirm-delete', onClick: onConfirm, autoFocus: true }, 'Delete')
+      )
+    )
+  );
+}
+
+// ── Category badge ─────────────────────────────────────────────────────────────
+function CategoryBadge({ category }) {
+  return h('span', { className: `category-badge ${CAT_CLASS[category] || ''}` }, category);
+}
+
+// ── Search icon ────────────────────────────────────────────────────────────────
+function SearchIcon() {
+  return h('svg', { className: 'search-icon', viewBox: '0 0 16 16', fill: 'none', stroke: 'currentColor', strokeWidth: 1.75, strokeLinecap: 'round' },
+    h('circle', { cx: 6.5, cy: 6.5, r: 4.5 }),
+    h('line', { x1: 10, y1: 10, x2: 14, y2: 14 })
+  );
+}
+
+// ── ListView ───────────────────────────────────────────────────────────────────
+function ListView({ contacts }) {
+  const [search, setSearch] = useState('');
+  const [catFilter, setCatFilter] = useState('All');
+
+  const filtered = contacts.filter(c => {
+    const q = search.toLowerCase();
+    const matchSearch = !q ||
+      c.name.toLowerCase().includes(q) ||
+      (c.company || '').toLowerCase().includes(q);
+    const matchCat = catFilter === 'All' || c.category === catFilter;
+    return matchSearch && matchCat;
+  });
+
+  return h('div', null,
+    h('div', { className: 'home-header' },
+      h('div', { className: 'home-title-block' },
+        h('h1', null, 'Contact Manager'),
+        h('p', null, 'Your network, organized.')
+      ),
+      h('button', { className: 'btn-primary', onClick: () => navigate('#add') }, '+ Add Contact')
+    ),
+
+    h('div', { className: 'search-box' },
+      h(SearchIcon),
+      h('input', {
+        type: 'search',
+        className: 'search-input',
+        placeholder: 'Search by name or company…',
+        value: search,
+        onChange: e => setSearch(e.target.value),
+        'aria-label': 'Search contacts'
+      })
+    ),
+
+    h('div', { className: 'filter-bar', role: 'group', 'aria-label': 'Filter by category' },
+      ['All', ...CATEGORIES].map(cat =>
+        h('button', {
+          key: cat,
+          className: `filter-pill${catFilter === cat ? ' active' : ''}`,
+          onClick: () => setCatFilter(cat),
+          'aria-pressed': catFilter === cat
+        }, cat)
+      )
+    ),
+
+    contacts.length === 0
+      ? h('div', { className: 'empty-state' },
+          h('p', null, 'No contacts yet.'),
+          h('button', { className: 'empty-state-action', onClick: () => navigate('#add') }, 'Add your first contact')
+        )
+      : filtered.length === 0
+        ? h('p', { className: 'empty-state' }, 'No contacts match your search.')
+        : h('div', { className: 'contact-list', role: 'list' },
+            filtered.map(c =>
+              h('div', {
+                key: c.id,
+                className: 'contact-row',
+                role: 'listitem',
+                onClick: () => navigate(`#detail/${c.id}`),
+                tabIndex: 0,
+                onKeyDown: e => { if (e.key === 'Enter' || e.key === ' ') navigate(`#detail/${c.id}`); }
+              },
+                h('div', {
+                  className: 'avatar',
+                  style: { background: getAvatarColor(c.name) }
+                }, getInitials(c.name)),
+                h('div', { className: 'contact-info' },
+                  h('div', { className: 'contact-name' }, c.name),
+                  c.company && h('div', { className: 'contact-company' }, c.company)
+                ),
+                h(CategoryBadge, { category: c.category }),
+                h('span', { className: 'chevron', 'aria-hidden': 'true' }, '›')
+              )
+            )
+          )
+  );
+}
+
+// ── DetailView ─────────────────────────────────────────────────────────────────
+function DetailView({ contact, onDelete }) {
+  const [showModal, setShowModal] = useState(false);
+
+  function confirmDelete() {
+    onDelete(contact.id);
+    navigate('#list');
+  }
+
+  const fields = [
+    { label: 'Category', value: h(CategoryBadge, { category: contact.category }) },
+    contact.company && { label: 'Company', value: contact.company },
+    contact.email  && { label: 'Email',   value: h('a', { href: `mailto:${contact.email}` }, contact.email) },
+    contact.phone  && { label: 'Phone',   value: h('a', { href: `tel:${contact.phone}` }, contact.phone) },
+    contact.notes  && { label: 'Notes',   value: contact.notes },
+  ].filter(Boolean);
+
+  return h('div', null,
+    h('div', { className: 'topbar' },
+      h('button', { className: 'back-btn', onClick: () => navigate('#list') }, '← Back'),
+      h('h2', { className: 'page-heading' }, 'Contact Details')
+    ),
+
+    h('div', {
+      className: 'detail-avatar',
+      style: { background: getAvatarColor(contact.name) }
+    }, getInitials(contact.name)),
+
+    h('div', { className: 'detail-name' }, contact.name),
+    contact.company && h('div', { className: 'detail-meta' }, contact.company),
+
+    h('div', { className: 'detail-fields' },
+      fields.map((f, i) =>
+        h('div', { key: i, className: 'detail-field' },
+          h('span', { className: 'detail-label' }, f.label),
+          h('span', { className: 'detail-value' }, f.value)
+        )
+      )
+    ),
+
+    h('div', { className: 'detail-actions' },
+      h('button', { className: 'btn-secondary', onClick: () => navigate(`#edit/${contact.id}`) }, 'Edit'),
+      h('button', { className: 'btn-danger', onClick: () => setShowModal(true) }, 'Delete')
+    ),
+
+    showModal && h(ConfirmModal, {
+      contactName: contact.name,
+      onConfirm: confirmDelete,
+      onCancel: () => setShowModal(false)
+    })
+  );
+}
+
+// ── ContactForm ────────────────────────────────────────────────────────────────
+function ContactForm({ initial, mode, onSave, onCancel }) {
+  const blank = { name: '', company: '', email: '', phone: '', category: 'Lead', notes: '' };
+  const [vals, setVals] = useState(() => initial ? { ...blank, ...initial } : blank);
+  const [errors, setErrors] = useState({});
+
+  function set(field, value) {
+    setVals(v => ({ ...v, [field]: value }));
+    if (errors[field]) setErrors(e => ({ ...e, [field]: null }));
+  }
+
+  function validate() {
+    const errs = {};
+    if (!vals.name.trim()) errs.name = 'Name is required.';
+    if (vals.email && !isValidEmail(vals.email)) errs.email = 'Enter a valid email address.';
+    return errs;
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    const errs = validate();
+    if (Object.keys(errs).length) { setErrors(errs); return; }
+    onSave({ ...vals, name: vals.name.trim() });
+  }
+
+  function field(id, label, type, required, placeholder, extra) {
+    const isTextarea = type === 'textarea';
+    const isSelect = type === 'select';
+    return h('div', { className: 'form-field' },
+      h('label', { className: 'form-label', htmlFor: id },
+        label,
+        required && h('span', { className: 'required', 'aria-hidden': 'true' }, ' *')
+      ),
+      isTextarea
+        ? h('textarea', {
+            id, className: 'form-textarea',
+            value: vals[id], placeholder,
+            onChange: e => set(id, e.target.value),
+            rows: 3, ...(extra || {})
+          })
+        : isSelect
+          ? h('select', {
+              id, className: 'form-select',
+              value: vals[id],
+              onChange: e => set(id, e.target.value),
+              ...(extra || {})
+            },
+              CATEGORIES.map(cat => h('option', { key: cat, value: cat }, cat))
+            )
+          : h('input', {
+              id, type, className: `form-input${errors[id] ? ' error' : ''}`,
+              value: vals[id], placeholder,
+              onChange: e => set(id, e.target.value),
+              ...(extra || {})
+            }),
+      errors[id] && h('span', { className: 'form-error', role: 'alert' }, errors[id])
+    );
+  }
+
+  return h('div', null,
+    h('div', { className: 'topbar' },
+      h('button', { className: 'back-btn', onClick: onCancel }, '← Back'),
+      h('h2', { className: 'page-heading' }, mode === 'edit' ? 'Edit Contact' : 'Add Contact')
+    ),
+
+    h('form', { className: 'contact-form', onSubmit: handleSubmit, noValidate: true },
+      field('name',    'Name',     'text',     true,  'Full name'),
+      field('company', 'Company',  'text',     false, 'Company or organisation'),
+      field('email',   'Email',    'email',    false, 'email@example.com'),
+      field('phone',   'Phone',    'tel',      false, '+1 555 000 0000'),
+      field('category','Category', 'select',   false, null),
+      field('notes',   'Notes',    'textarea', false, 'Any additional notes…'),
+
+      h('div', { className: 'form-actions' },
+        h('button', { type: 'submit', className: 'btn-primary' },
+          mode === 'edit' ? 'Save Changes' : 'Add Contact'
+        ),
+        h('button', { type: 'button', className: 'btn-secondary', onClick: onCancel }, 'Cancel')
+      )
+    )
+  );
+}
+
+// ── App ────────────────────────────────────────────────────────────────────────
+function App() {
+  const hash = useHash();
+  const route = parseRoute(hash);
+  const [contacts, setContacts] = useState(loadContacts);
+
+  useEffect(() => { saveContacts(contacts); }, [contacts]);
+
+  function addContact(vals) {
+    const contact = { id: genId(), createdAt: Date.now(), ...vals };
+    setContacts(cs => [contact, ...cs]);
+    navigate('#list');
+  }
+
+  function updateContact(id, vals) {
+    setContacts(cs => cs.map(c => c.id === id ? { ...c, ...vals } : c));
+    navigate(`#detail/${id}`);
+  }
+
+  function deleteContact(id) {
+    setContacts(cs => cs.filter(c => c.id !== id));
+  }
+
+  const contact = (route.view === 'detail' || route.view === 'edit')
+    ? contacts.find(c => c.id === route.id) || null
+    : null;
+
+  if (route.view === 'add') {
+    return h('div', { className: 'page' },
+      h(ContactForm, {
+        mode: 'add',
+        onSave: addContact,
+        onCancel: () => navigate('#list')
+      })
+    );
+  }
+
+  if (route.view === 'edit' && contact) {
+    return h('div', { className: 'page' },
+      h(ContactForm, {
+        mode: 'edit',
+        initial: contact,
+        onSave: vals => updateContact(contact.id, vals),
+        onCancel: () => navigate(`#detail/${contact.id}`)
+      })
+    );
+  }
+
+  if (route.view === 'edit' && !contact) {
+    navigate('#list');
+    return null;
+  }
+
+  if (route.view === 'detail' && contact) {
+    return h('div', { className: 'page' },
+      h(DetailView, { contact, onDelete: deleteContact })
+    );
+  }
+
+  if (route.view === 'detail' && !contact) {
+    navigate('#list');
+    return null;
+  }
+
+  return h('div', { className: 'page' },
+    h(ListView, { contacts })
+  );
+}
+
+createRoot(document.getElementById('root')).render(h(App, null));
+</script>
+</body>
+</html>
