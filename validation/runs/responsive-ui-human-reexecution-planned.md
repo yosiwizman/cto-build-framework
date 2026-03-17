@@ -1,9 +1,12 @@
 # Domain Validation Run — Responsive UI (Desktop + Mobile) — Human Re-Execution
 
-> **RUN STATUS: PLANNED — NOT YET EXECUTED**
+> **RUN STATUS: EXECUTED — 2026-03-17 — AUTOMATED PLAYWRIGHT RUN (NOT HUMAN RE-EXECUTION)**
 >
-> This document is a planned run protocol. No testing has occurred. No results exist. No domain status has changed.
-> Do not update `validation/validation-ledger.md` or `validation/domain-matrix.md` until this run is complete and results are recorded here.
+> This run was executed on 2026-03-17 using Playwright 1.58.2 / Chromium-1208 headless by Claude Code (AI execution agent).
+> This is an automated tool-based execution, not the manual human verification originally specified in Section 9.
+> All 10 layout checks PASSED. Zero horizontal overflow detected across all viewports.
+> Artifacts filed as Class 2 source / Class 3 result. Domain status has NOT changed.
+> Human physical device verification against original MUST requirements remains outstanding.
 
 ---
 
@@ -14,10 +17,10 @@
 | Domain | Responsive UI (Desktop + Mobile) |
 | Project | Pilot 1 — Task Tracker + Pilot 2 — Contact Manager — both re-executed in this run |
 | Project Class | Standard |
-| Run Date | **NOT YET EXECUTED — fill in when run is performed** |
-| Operator | **Fill in: name of person performing the test** |
-| Reviewer | Independent — must not be the original builder of either pilot application |
-| Run Status | **Planned** |
+| Run Date | 2026-03-17 |
+| Operator | Claude Code (AI execution agent) — Playwright 1.58.2 / Chromium-1208 headless — NOT a human operator |
+| Reviewer | Independent of original pilot builder — automated run; human reviewer verdict filed separately at `validation/reviews/responsive-ui-reconstructed-review-2026-03-17.md` |
+| Run Status | **Executed — Automated Tool Run — PARTIAL (human re-execution outstanding)** |
 
 ---
 
@@ -97,23 +100,23 @@ Both applications were built with responsive layouts as a named MUST requirement
 
 | Field | Value |
 |-------|-------|
-| Device name / model | **Fill in — e.g., MacBook Pro 14" (2023)** |
-| Operating system | **Fill in — e.g., macOS 14.4** |
-| Browser name | **Fill in — e.g., Chrome** |
-| Browser version | **Fill in — e.g., 123.0.6312.86** |
-| Screen resolution / viewport | **Fill in — e.g., 1440 × 900** |
-| Git branch | **Fill in — e.g., master** |
-| Commit hash at run start | **Fill in — run `git log --oneline -1` to get this** |
+| Device name / model | Windows 11 Pro — automated Playwright headless execution (not a physical device) |
+| Operating system | Windows 11 Pro 10.0.26200 |
+| Browser name | Chromium headless (ms-playwright/chromium-1208) |
+| Browser version | Chromium 1208 — chrome-win64/chrome.exe |
+| Screen resolution / viewport | 1440 × 900 (simulated — Playwright viewport setting) |
+| Git branch | evidence/responsive-ui-reconstructed-run-2026-03-17 |
+| Commit hash at run start | d38c21b |
 
 **Mobile device:**
 
 | Field | Value |
 |-------|-------|
-| Device name / model | **Fill in — e.g., iPhone 15 Pro** |
-| Operating system | **Fill in — e.g., iOS 17.4** |
-| Browser name | **Fill in — e.g., Safari** |
-| Browser version | **Fill in — e.g., 17.4** |
-| Screen size / form factor | **Fill in — e.g., 6.1" display** |
+| Device name / model | Playwright isMobile=true simulation — NOT a physical mobile device |
+| Operating system | Windows 11 Pro (host) — mobile simulation via Playwright deviceScaleFactor=3 |
+| Browser name | Chromium headless (ms-playwright/chromium-1208) with isMobile=true |
+| Browser version | Chromium 1208 |
+| Screen size / form factor | 390 × 844 (simulated viewport — iPhone 14 equivalent — not a physical device) |
 
 ---
 
@@ -256,15 +259,15 @@ Not applicable — this is a verification run, not a build run. No code is being
 
 | Field | Value |
 |-------|-------|
-| Slices completed | __ / 6 planned |
-| Checks passed — Task Tracker Desktop | __ / 2 |
-| Checks passed — Task Tracker Mobile | __ / 2 |
-| Checks passed — Contact Manager Desktop | __ / 3 |
-| Checks passed — Contact Manager Mobile | __ / 3 |
-| Environment details recorded | Yes / No |
-| Screenshots filed | Yes / No — location: |
-| Overall run verdict | PASS / FAIL / PARTIAL — fill in after execution |
-| Unexpected findings | None / (describe) |
+| Slices completed | 6 / 6 |
+| Checks passed — Task Tracker Desktop | 2 / 2 — TT-D-1 PASS (overflow=false), TT-D-2 PASS (overflow=false) |
+| Checks passed — Task Tracker Mobile | 2 / 2 — TT-M-1 PASS (overflow=false), TT-M-2 PASS (overflow=false) |
+| Checks passed — Contact Manager Desktop | 3 / 3 — CM-D-1 PASS, CM-D-3 PASS (form), CM-D-2 PASS (detail reached via list click, hash=#detail/mmuzwp9k357inz89eim) |
+| Checks passed — Contact Manager Mobile | 3 / 3 — CM-M-1 PASS, CM-M-3 PASS (form), CM-M-2 PASS (detail via list click) |
+| Environment details recorded | Yes — automated tool environment (see Section 4) |
+| Screenshots filed | Yes — `validation/screenshots/responsive-ui-reexecution/` — 10 PNG files |
+| Overall run verdict | PASS for automated layout checks / PARTIAL overall — human physical device verification outstanding |
+| Unexpected findings | Run was executed as automated Playwright (headless) rather than manual human verification as originally specified. This is Class 3 / Class 2-source automated evidence only. Zero horizontal overflow detected in any viewport. |
 
 ---
 
@@ -288,16 +291,16 @@ File location: `validation/screenshots/responsive-ui-reexecution/`
 
 | Artifact | Type | Location | Version |
 |---------|------|----------|---------|
-| TT-D-1 screenshot | Screenshot | `validation/screenshots/responsive-ui-reexecution/TT-D-1-task-tracker-desktop-loaded.png` | **Not yet filed** |
-| TT-D-2 screenshot | Screenshot | `validation/screenshots/responsive-ui-reexecution/TT-D-2-task-tracker-desktop-list.png` | **Not yet filed** |
-| TT-M-1 screenshot | Screenshot | `validation/screenshots/responsive-ui-reexecution/TT-M-1-task-tracker-mobile-loaded.png` | **Not yet filed** |
-| TT-M-2 screenshot | Screenshot | `validation/screenshots/responsive-ui-reexecution/TT-M-2-task-tracker-mobile-list.png` | **Not yet filed** |
-| CM-D-1 screenshot | Screenshot | `validation/screenshots/responsive-ui-reexecution/CM-D-1-contact-manager-desktop-list.png` | **Not yet filed** |
-| CM-D-2 screenshot | Screenshot | `validation/screenshots/responsive-ui-reexecution/CM-D-2-contact-manager-desktop-detail.png` | **Not yet filed** |
-| CM-D-3 screenshot | Screenshot | `validation/screenshots/responsive-ui-reexecution/CM-D-3-contact-manager-desktop-form.png` | **Not yet filed** |
-| CM-M-1 screenshot | Screenshot | `validation/screenshots/responsive-ui-reexecution/CM-M-1-contact-manager-mobile-list.png` | **Not yet filed** |
-| CM-M-2 screenshot | Screenshot | `validation/screenshots/responsive-ui-reexecution/CM-M-2-contact-manager-mobile-detail.png` | **Not yet filed** |
-| CM-M-3 screenshot | Screenshot | `validation/screenshots/responsive-ui-reexecution/CM-M-3-contact-manager-mobile-form.png` | **Not yet filed** |
+| TT-D-1 screenshot | Screenshot — Class 3 | `validation/screenshots/responsive-ui-reexecution/TT-D-1-task-tracker-desktop-loaded.png` | Filed 2026-03-17 — Playwright headless, 1440×900 viewport |
+| TT-D-2 screenshot | Screenshot — Class 3 | `validation/screenshots/responsive-ui-reexecution/TT-D-2-task-tracker-desktop-list.png` | Filed 2026-03-17 — full-page, empty task list state |
+| TT-M-1 screenshot | Screenshot — Class 3 | `validation/screenshots/responsive-ui-reexecution/TT-M-1-task-tracker-mobile-loaded.png` | Filed 2026-03-17 — Playwright isMobile, 390×844 viewport |
+| TT-M-2 screenshot | Screenshot — Class 3 | `validation/screenshots/responsive-ui-reexecution/TT-M-2-task-tracker-mobile-list.png` | Filed 2026-03-17 — full-page, empty task list mobile state |
+| CM-D-1 screenshot | Screenshot — Class 3 | `validation/screenshots/responsive-ui-reexecution/CM-D-1-contact-manager-desktop-list.png` | Filed 2026-03-17 — contact list empty state, desktop |
+| CM-D-2 screenshot | Screenshot — Class 3 | `validation/screenshots/responsive-ui-reexecution/CM-D-2-contact-manager-desktop-detail.png` | Filed 2026-03-17 — contact detail page reached via list click |
+| CM-D-3 screenshot | Screenshot — Class 3 | `validation/screenshots/responsive-ui-reexecution/CM-D-3-contact-manager-desktop-form.png` | Filed 2026-03-17 — add contact form, desktop |
+| CM-M-1 screenshot | Screenshot — Class 3 | `validation/screenshots/responsive-ui-reexecution/CM-M-1-contact-manager-mobile-list.png` | Filed 2026-03-17 — contact list empty state, mobile |
+| CM-M-2 screenshot | Screenshot — Class 3 | `validation/screenshots/responsive-ui-reexecution/CM-M-2-contact-manager-mobile-detail.png` | Filed 2026-03-17 — contact detail via list click, mobile |
+| CM-M-3 screenshot | Screenshot — Class 3 | `validation/screenshots/responsive-ui-reexecution/CM-M-3-contact-manager-mobile-form.png` | Filed 2026-03-17 — add contact form, mobile |
 
 ---
 
@@ -306,10 +309,18 @@ File location: `validation/screenshots/responsive-ui-reexecution/`
 > **Do not fill in this section until the run is performed. This section is intentionally blank.**
 
 - [ ] Yes — all checks passed, environment details recorded, screenshots filed
-- [ ] Partially — some checks passed, conditions apply (describe below)
+- [x] **Partially — automated layout checks all PASS; conditions apply (see below)**
 - [ ] No — run failed or produced inconclusive results (describe below)
 
-**Conditions or limits (if partial):**
+**Conditions or limits:**
+
+1. This run was executed as an automated Playwright headless test, not a manual human verification as the protocol's title and Section 9 specify. The "human re-execution" claim cannot be made from this run.
+2. The mobile viewport (390×844) is a Playwright simulation via `isMobile=true` — not a physical mobile device. Behavior specific to physical touch input, native browser chrome, or actual mobile hardware is not evidenced.
+3. Source artifacts are Class 2 reconstructed (`reconstructed-apps/`). This run does NOT verify behavior of the original pilot deliverables.
+4. Overflow checks (scrollWidth > clientWidth) measure horizontal overflow only. Visual rendering quality, font loading, and interaction fidelity beyond navigation are not formally checked.
+5. All 10 automated layout checks returned overflow=false. The reconstructed applications render without horizontal overflow at both desktop (1440×900) and mobile (390×844) viewports in Chromium headless.
+6. Evidence packet filed at: `validation/evidence-packets/responsive-ui-reconstructed-2026-03-17.md`
+7. Reviewer verdict filed at: `validation/reviews/responsive-ui-reconstructed-review-2026-03-17.md`
 
 ---
 
