@@ -75,7 +75,7 @@ Before updating any row in this ledger:
 1. The corresponding artifact must exist and be filed in `validation/runs/`, `validation/evidence-packets/`, or `validation/reviews/`
 2. The `domain-matrix.md` status must be updated in the same commit
 3. The commit message must name the domain and the artifact being added
-4. No status may be upgraded without a reviewer verdict on file
+4. No status may be upgraded without a reviewer verdict on file — a PARTIAL verdict (documentation review only) is insufficient to upgrade a domain to Validated; full Validated status requires a reviewer verdict based on independent re-execution proof (see [`domain-matrix.md` — Re-Execution Requirement](./domain-matrix.md#re-execution-requirement-for-full-validation))
 
 Do not update this ledger without an artifact. The ledger reflects what exists, not what is planned.
 
