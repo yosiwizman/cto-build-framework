@@ -81,4 +81,4 @@ Do not update this ledger without an artifact. The ledger reflects what exists, 
 
 ---
 
-_Last updated: 2026-03-16. Updated: Responsive UI human re-execution run protocol filed (`validation/runs/responsive-ui-human-reexecution-planned.md`) — planned, not yet executed. Backlog row updated to reflect protocol existence. No domain status changed. Human re-execution remains outstanding across all domains. Maintained as a living document — updated only when artifacts are filed._
+_Last updated: 2026-03-17. Updated: Responsive UI human re-execution run protocol filed (`validation/runs/responsive-ui-human-reexecution-planned.md`) — planned, not yet executed. Backlog row updated to reflect protocol existence. No domain status changed. Human re-execution remains outstanding across all domains. Maintained as a living document — updated only when artifacts are filed._

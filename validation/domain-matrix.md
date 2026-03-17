@@ -6,7 +6,7 @@ This document tracks the validation status of the CTO Build Framework across all
 
 | Status | Meaning |
 |--------|---------|
-| **Validated** | At least one project completed the full governance loop with all MUST requirements Proven |
+| **Validated** | At least one project completed the full governance loop with all MUST requirements Proven. For future designations, independent re-execution proof is also required — see Re-Execution Requirement section. |
 | **Partially Validated** | Governance mechanisms tested in isolation or simulation, but no complete project through the full loop |
 | **Untested** | Doctrine may exist, but no project or simulation has exercised the governance in this domain |
 
