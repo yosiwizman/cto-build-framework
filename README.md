@@ -116,7 +116,7 @@ cto-build-framework/
 │   └── rollback-protocol.md           # Checkpoint and rollback mechanics
 ├── validation/
 │   ├── domain-matrix.md               # Full domain validation matrix
-│   ├── validated-domains.md           # Domains with full validation evidence
+│   ├── validated-domains.md           # Legacy narrative summary — pre-template historical record; not a canonical evidence source
 │   ├── partial-domains.md             # Partially validated domains
 │   └── untested-domains.md            # Domains awaiting validation
 ├── pilots/
