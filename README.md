@@ -96,6 +96,7 @@ A domain moves from **Untested** to **Validated** only when:
 2. All MUST requirements have reached **Proven** status (founder-verified with evidence on file)
 3. The release gate has been executed and produced a passing verdict
 4. Evidence packets are documented and available for review
+5. Independent re-execution proof is on file — a party other than the original build operator has run and verified the software against the same requirements, producing a complete artifact trail (see [`validation/domain-matrix.md`](./validation/domain-matrix.md#re-execution-requirement-for-full-validation))
 
 **Partially Validated** means the governance mechanisms for that domain have been tested in isolation or through simulation, but no complete project has passed through the full loop.
 
