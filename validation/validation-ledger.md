@@ -61,6 +61,10 @@ The following work is required to bring the existing Validated domain evidence i
 | File canonical evidence packet for Responsive UI (from both pilots) | Responsive UI | Medium | Filed (incomplete) — `validation/evidence-packets/responsive-ui-both-pilots.md` — gaps: screenshots not in repo, device names/OS/browser not recorded; documentation review filed at PARTIAL |
 | Conduct and log first multi-session continuity validation run | Multi-Session Continuity | High | Not started |
 | Complete independent human review of Task Tracker — re-execute software against all 10 requirements | CRUD / Local-State | Medium | Not started — documentation review filed; human re-execution outstanding |
+| Complete independent human review of Contact Manager — re-execute software against all 14 requirements; reviewer must be independent of original build | Client-Side Multi-Page | Medium | Not started — documentation review filed; human re-execution outstanding |
+| Complete independent human review of Contact Manager search and filtering — re-execute R-05 (search by name/company) and R-06 (filter by category) including combined simultaneous use | Search / Filtering | Medium | Not started — documentation review filed; human re-execution outstanding |
+| Complete independent human review of Contact Manager email validation — re-execute R-09 only; test valid and invalid email inputs; scope remains client-side email format only | Form Validation | Medium | Not started — documentation review filed; human re-execution outstanding |
+| Complete independent re-execution of responsive layout on documented devices — record device name, OS version, and browser; test both Task Tracker and Contact Manager; this domain requires environment details, not just screenshots | Responsive UI | Medium | Not started — documentation review filed; device/OS/browser recording outstanding |
 
 ---
 
