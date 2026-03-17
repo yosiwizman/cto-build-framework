@@ -21,7 +21,7 @@ For artifact requirements before a status change, see [How the Matrix Updates](.
 | **Simulation Coverage** | Rollback/recovery tested in this domain — Yes / Partial / No |
 | **Notes / Limits** | Known gaps, conditions, or proof-boundary limits |
 
-**Important:** "None on file" means no canonical artifact exists in the new template format. For Validated domains, narrative evidence exists in `validation/validated-domains.md` and `pilots/` — but formal run documents, canonical evidence packets, and reviewer verdict files have not yet been filed. That is the current honest state.
+**Important:** "None on file" means no canonical artifact exists in the current evidence system — no formal run log, evidence packet, or reviewer verdict has been filed in template format. For currently Validated domains, historical narrative records may exist in `pilots/` and in `validation/validated-domains.md`, but those are pre-template legacy files and are not canonical evidence sources. Canonical present-day evidence lives in `validation/evidence-packets/`, `validation/reviews/`, `validation/domain-matrix.md`, and `validation/validation-run-index.md`. All current reviewer verdicts for Validated domains are PARTIAL — independent re-execution is outstanding.
 
 ---
 
