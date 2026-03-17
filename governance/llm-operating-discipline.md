@@ -114,7 +114,29 @@ Not every interaction with an LLM should produce output. Some interactions shoul
 
 ---
 
-## 7. Verification as a Continuous Loop
+## 7. Isolated Scout Environments
+
+A scout pass reads the existing codebase before modifying it. An isolated scout environment takes this further: it runs a parallel, autonomous attempt in a fully separated workspace to surface failure modes before they reach the governed build.
+
+**What it is.** A disposable, isolated environment — a separate container, shadow workspace, or sandboxed session — in which the AI explores an approach, tests a risky slice, or probes unfamiliar territory without touching the primary build's codebase, checkpoint history, or evidence record. The scout runs ahead of the main build, not alongside it. Its job is to map hazards, not produce a deliverable.
+
+**Why it is useful.** Some failure modes are only visible when you attempt them. A scout environment lets the AI encounter a dead end, hit an unexpected dependency, or discover an integration problem — without costing a checkpoint, contaminating the evidence record, or leaving the primary build in a broken state. The failure is cheap because nothing in the governed build was at risk.
+
+**Key guardrails:**
+- The scout is fully isolated. No code, state, or commits from the scout environment enter the primary build without explicit founder review.
+- The scout runs ahead of — not in parallel with — the governed build. It informs the approach; it does not replace the governed execution.
+- The scout holds no checkpoints. It is disposable. If it succeeds, its findings inform the main build. If it fails, nothing is lost.
+- The founder approves any scout finding before it enters the governed build path.
+
+**What the scout must output.** The scout run ends with a structured exit artifact — a brief report stating: what was attempted, what succeeded, what failed, what the failure revealed, and a recommended approach for the main build. A scout run that produces no structured output produces no usable signal and should not be run.
+
+**What it does not prove.** A successful scout run does not extend the proof boundary, substitute for founder verification, or produce evidence that counts toward a release gate. The governed main build must still execute the approach independently — under full governance, with its own checkpoints, verification, and evidence record.
+
+**The principle.** Use a scout environment when the cost of a wrong approach in the governed build is high. Probe in isolation, report what you found, then build under governance.
+
+---
+
+## 8. Verification as a Continuous Loop
 
 Verification is not a phase that happens at the end. It is a continuous practice that happens at every step.
 
@@ -132,7 +154,7 @@ Verification is not a phase that happens at the end. It is a continuous practice
 
 ---
 
-## 8. What a Non-Coder Founder Actually Controls
+## 9. What a Non-Coder Founder Actually Controls
 
 A non-technical founder using this discipline does not control the code. They control something more important: the system that produces and verifies the code.
 
@@ -160,7 +182,7 @@ This is not a limitation — it's a feature of the operating model. The founder'
 
 ---
 
-## 9. What This Doctrine Does and Does Not Claim
+## 10. What This Doctrine Does and Does Not Claim
 
 **What it claims:**
 - Following this operating discipline produces more reliable results than unstructured LLM interaction
@@ -188,7 +210,7 @@ The model doesn't have intent. It doesn't lie. It responds to the structure of i
 
 ---
 
-## 10. Operational Rules Summary
+## 11. Operational Rules Summary
 
 These rules are the distilled operating discipline. They apply to every session, every task, every slice.
 
@@ -204,6 +226,7 @@ These rules are the distilled operating discipline. They apply to every session,
 | 8 | **Do not widen claims beyond evidence.** State what is proven. Acknowledge what is untested. | Maintains credibility and prevents overclaiming. |
 | 9 | **Treat every interaction as a work order.** Scope, constraints, deliverables, acceptance criteria. | Replaces vague conversation with structured instruction. |
 | 10 | **The model is not the system.** The model + tool + environment + process is the system. | Prevents blaming the model for operating failures. |
+| 11 | **Scout in isolation before committing.** Use a disposable scout environment for risky or unfamiliar approaches. | Surfaces failure modes without contaminating the governed build or its evidence. |
 
 **Quick-reference cheat sheet for session start:**
 
