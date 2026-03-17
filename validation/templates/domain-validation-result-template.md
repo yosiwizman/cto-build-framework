@@ -14,6 +14,29 @@
 
 ---
 
+## Artifact Provenance
+
+> **This section is required. Fill it before recording any results. The artifact class declared here governs what this result document may be used to support. See `validation/domain-matrix.md` — Artifact Classification.**
+
+| Field | Value |
+|-------|-------|
+| Artifact Class Used | **Select one:** Class 1 — Original Pilot Artifact / Class 2 — Reconstructed Artifact / Class 3 — New Execution Artifact |
+| Source Artifact Path | (exact path to the file that was tested, e.g., `reconstructed-apps/task-tracker-reconstructed.html`) |
+| Run Type | **Select one:** Original pilot execution / Reconstructed run / New independent validation run |
+| Corresponding run log | (link to the run document this result is drawn from, e.g., `validation/runs/responsive-ui-human-reexecution-planned.md`) |
+
+**Provenance Statement (required):**
+
+> "This result was produced using a **[Class X]** artifact. It must not be interpreted as evidence of original pilot execution unless the artifact class is Class 1. Class 2 results demonstrate behavior of a reconstructed artifact only. Class 3 results constitute new independent evidence and must be accompanied by a full artifact trail before any domain status change."
+
+> **Guardrail reminders:**
+> - Class 2 results cannot upgrade domain confidence or close artifact gaps in original evidence packets
+> - Results from this document may only update `validation/domain-matrix.md` after a reviewer verdict is filed and the artifact class is Class 1 or Class 3
+> - Mixing Class 1 and Class 2 evidence in a single claim invalidates the claim
+> - If the source artifact is a reconstructed file, label this result document `reconstructed-[date]` and do not file it alongside original pilot evidence
+
+---
+
 ## Execution Metadata
 
 | Field | Value |

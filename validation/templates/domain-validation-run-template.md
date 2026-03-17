@@ -18,6 +18,28 @@
 
 ---
 
+## Artifact Classification
+
+> **This section is required. Do not leave it blank. The artifact class declared here governs how results from this run may be used. See `validation/domain-matrix.md` — Artifact Classification for full definitions.**
+
+| Field | Value |
+|-------|-------|
+| Artifact Class | **Select one:** Class 1 — Original Pilot Artifact / Class 2 — Reconstructed Artifact / Class 3 — New Execution Artifact |
+| Source Artifact Path | (e.g., `reconstructed-apps/task-tracker-reconstructed.html` or `pilots/task-tracker.md`) |
+| Execution Context | **Select one:** Original pilot run / Reconstructed run using generated artifact / New independent validation run |
+
+**Classification Declaration (required — fill in the blanks):**
+
+> "This run uses a **[Class X]** artifact. Results from this run must be evaluated under the constraints defined in `validation/domain-matrix.md` — Artifact Classification. Specifically: [state the applicable constraint, e.g., 'results may not be used to confirm original pilot execution' for Class 2, or 'results may produce new evidence toward domain status' for Class 3]."
+
+> **Guardrail reminders:**
+> - Class 2 (Reconstructed) results cannot upgrade domain confidence in existing validation claims
+> - Mixing artifact classes in a single claim invalidates the claim
+> - Class 1 or Class 3 evidence only may be used to update `validation/domain-matrix.md` domain status
+> - If this is a Class 2 run, label all produced artifacts as `reconstructed-[date]` — never append them to original pilot evidence packets
+
+---
+
 ## 1. Goal
 
 What outcome does this validation run aim to prove?
