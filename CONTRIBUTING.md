@@ -12,11 +12,11 @@ If you build a project under this governance in an untested domain and it passes
 - The project must have been scoped, approved, and built under the full governance loop
 - All MUST requirements must have reached Proven status with founder verification
 - The release gate must have been executed with a passing verdict
-- An evidence packet must be prepared following the format in `/evidence-packets/README.md`
+- An evidence packet must be prepared following the format in `validation/templates/evidence-packet-template.md`
 
 **Process:**
 1. Fork this repository
-2. Add your evidence packet to `/evidence-packets/`
+2. Add your evidence packet to `validation/evidence-packets/`
 3. Update the relevant domain status in `/validation/`
 4. Submit a pull request with a clear description of the project, domain, and evidence
 
