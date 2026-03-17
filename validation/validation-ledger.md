@@ -64,7 +64,7 @@ The following work is required to bring the existing Validated domain evidence i
 | Complete independent human review of Contact Manager — re-execute software against all 14 requirements; reviewer must be independent of original build | Client-Side Multi-Page | Medium | Not started — documentation review filed; human re-execution outstanding |
 | Complete independent human review of Contact Manager search and filtering — re-execute R-05 (search by name/company) and R-06 (filter by category) including combined simultaneous use | Search / Filtering | Medium | Not started — documentation review filed; human re-execution outstanding |
 | Complete independent human review of Contact Manager email validation — re-execute R-09 only; test valid and invalid email inputs; scope remains client-side email format only | Form Validation | Medium | Not started — documentation review filed; human re-execution outstanding |
-| Complete independent re-execution of responsive layout on documented devices — record device name, OS version, and browser; test both Task Tracker and Contact Manager; this domain requires environment details, not just screenshots | Responsive UI | Medium | Not started — documentation review filed; device/OS/browser recording outstanding |
+| Complete independent re-execution of responsive layout on documented devices — record device name, OS version, and browser; test both Task Tracker and Contact Manager; this domain requires environment details, not just screenshots | Responsive UI | Medium | Run protocol filed — planned, not yet executed (`validation/runs/responsive-ui-human-reexecution-planned.md`); device/OS/browser recording outstanding; no results on file |
 
 ---
 
@@ -81,4 +81,4 @@ Do not update this ledger without an artifact. The ledger reflects what exists, 
 
 ---
 
-_Last updated: 2026-03-16. Updated: Reviewer verdict filed for Responsive UI — documentation review, PARTIAL verdict. All five validated domains now have documentation-review verdicts on file. Human re-execution outstanding across all domains. Maintained as a living document — updated only when artifacts are filed._
+_Last updated: 2026-03-16. Updated: Responsive UI human re-execution run protocol filed (`validation/runs/responsive-ui-human-reexecution-planned.md`) — planned, not yet executed. Backlog row updated to reflect protocol existence. No domain status changed. Human re-execution remains outstanding across all domains. Maintained as a living document — updated only when artifacts are filed._
