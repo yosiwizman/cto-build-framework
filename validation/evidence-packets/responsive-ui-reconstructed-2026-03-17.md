@@ -66,7 +66,7 @@ This was verified by an automated Playwright run using Chromium-1208 headless on
 | 9 | CM-M-2 screenshot | Screenshot — Class 3 | Contact Manager mobile (390×844) contact detail page | `validation/screenshots/responsive-ui-reexecution/CM-M-2-contact-manager-mobile-detail.png` |
 | 10 | CM-M-3 screenshot | Screenshot — Class 3 | Contact Manager mobile (390×844) add contact form | `validation/screenshots/responsive-ui-reexecution/CM-M-3-contact-manager-mobile-form.png` |
 | 11 | Run results JSON | Machine-readable run log | All 10 check results, environment details, pass/fail per check | `validation/screenshots/responsive-ui-reexecution/run-results.json` |
-| 12 | Run protocol | Validation run log | Executed run protocol with filled-in results and environment | `validation/runs/responsive-ui-human-reexecution-planned.md` |
+| 12 | Run log | Validation run log | Automated run log with filled-in results and environment | `validation/runs/responsive-ui-reconstructed-automated-2026-03-17.md` |
 | 13 | Reviewer verdict | Verdict — Class 3 | Automated run verdict | `validation/reviews/responsive-ui-reconstructed-review-2026-03-17.md` |
 
 ---
