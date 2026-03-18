@@ -1,0 +1,119 @@
+# SSOT Integrity Workflow
+#
+# REPO SCOPE NOTE:
+#   This repository is a documentation, governance, and validation archive.
+#   It is NOT a runnable UI application repo.
+#   This workflow checks repo/SSOT structural integrity only.
+#   It does NOT run Playwright, npm install, app builds, or UI tests.
+#   UI Playwright execution belongs in governed product repos that contain
+#   runnable application code — not in this framework repo.
+#
+# PURPOSE:
+#   Verify that all required SSOT governance and validation artifacts are
+#   present on every pull request and push to master, and that no placeholder
+#   URLs have been left in repo-side governance files.
+
+name: SSOT Integrity
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+jobs:
+  ssot-integrity:
+    name: Check SSOT Integrity
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # ------------------------------------------------------------------
+      # CHECK A — Required SSOT files must exist
+      #
+      # These are the canonical governance and validation artifacts that
+      # must always be present in the repo. If any of these files are
+      # missing, the repo SSOT is incomplete and the check must fail.
+      # ------------------------------------------------------------------
+      - name: Check required SSOT files exist
+        run: |
+          MISSING=0
+
+          required_files=(
+            "CLAUDE.md"
+            "README.md"
+            "governance/llm-operating-discipline.md"
+            "governance/ui-validation-protocol.md"
+            "validation/domain-matrix.md"
+            "validation/validation-ledger.md"
+            "validation/evidence-coverage-matrix.md"
+            "validation/manuscript-framework-crosswalk.md"
+            "validation/publication-readiness-checklist.md"
+            "validation/final-publication-handoff.md"
+          )
+
+          for f in "${required_files[@]}"; do
+            if [ ! -f "$f" ]; then
+              echo "MISSING: $f"
+              MISSING=1
+            else
+              echo "OK: $f"
+            fi
+          done
+
+          if [ "$MISSING" -eq 1 ]; then
+            echo ""
+            echo "ERROR: One or more required SSOT files are missing."
+            echo "Add the missing files before merging."
+            exit 1
+          fi
+
+          echo ""
+          echo "All required SSOT files present."
+
+      # ------------------------------------------------------------------
+      # CHECK B — No [URL] placeholder remaining in repo-side files
+      #
+      # The manuscript baseline contained a [URL] placeholder that was
+      # replaced in the approved candidate. This check ensures no [URL]
+      # placeholder has been introduced or left behind in repo governance
+      # or validation files.
+      #
+      # Scope: README.md, governance/, validation/
+      # Does NOT scan manuscript files outside the repo.
+      # ------------------------------------------------------------------
+      - name: Check for residual [URL] placeholder in repo files
+        run: |
+          FOUND=0
+
+          # Search README.md
+          if grep -q '\[URL\]' README.md 2>/dev/null; then
+            echo "PLACEHOLDER FOUND in: README.md"
+            grep -n '\[URL\]' README.md
+            FOUND=1
+          fi
+
+          # Search governance/ directory (markdown files only)
+          if find governance/ -name "*.md" | xargs grep -l '\[URL\]' 2>/dev/null | grep -q .; then
+            echo "PLACEHOLDER FOUND in governance/:"
+            find governance/ -name "*.md" | xargs grep -n '\[URL\]' 2>/dev/null
+            FOUND=1
+          fi
+
+          # Search validation/ directory (markdown files only)
+          if find validation/ -name "*.md" | xargs grep -l '\[URL\]' 2>/dev/null | grep -q .; then
+            echo "PLACEHOLDER FOUND in validation/:"
+            find validation/ -name "*.md" | xargs grep -n '\[URL\]' 2>/dev/null
+            FOUND=1
+          fi
+
+          if [ "$FOUND" -eq 1 ]; then
+            echo ""
+            echo "ERROR: Residual [URL] placeholder found in repo files."
+            echo "Replace all [URL] occurrences before merging."
+            exit 1
+          fi
+
+          echo "No residual [URL] placeholder found in README.md, governance/, or validation/."
