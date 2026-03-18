@@ -12,8 +12,8 @@
 |-------|-------|
 | Reviewer name | Claude Code (AI execution agent) |
 | Reviewer role | Automated execution agent — independent of original pilot builder; NOT a human reviewer |
-| Scope reviewed | Validation run (`validation/runs/responsive-ui-human-reexecution-planned.md`) + Evidence packet (`validation/evidence-packets/responsive-ui-reconstructed-2026-03-17.md`) + 10 screenshots |
-| Run or packet being reviewed | Run: `validation/runs/responsive-ui-human-reexecution-planned.md` (responsive-002) |
+| Scope reviewed | Validation run (`validation/runs/responsive-ui-reconstructed-automated-2026-03-17.md`) + Evidence packet (`validation/evidence-packets/responsive-ui-reconstructed-2026-03-17.md`) + 10 screenshots |
+| Run or packet being reviewed | Run: `validation/runs/responsive-ui-reconstructed-automated-2026-03-17.md` (responsive-002) |
 | Review date | 2026-03-17 |
 | Verdict | **PARTIAL** |
 
@@ -23,7 +23,7 @@
 
 | Item Reviewed | Type | Status |
 |---------------|------|--------|
-| `validation/runs/responsive-ui-human-reexecution-planned.md` — executed sections | Validation run log | Reviewed — run executed and filled in |
+| `validation/runs/responsive-ui-reconstructed-automated-2026-03-17.md` | Validation run log | Reviewed — automated run log with results |
 | `validation/evidence-packets/responsive-ui-reconstructed-2026-03-17.md` | Evidence packet (Class 3) | Reviewed — filed and complete for automated scope |
 | `validation/screenshots/responsive-ui-reexecution/` — 10 PNG files | Screenshot evidence (Class 3) | Filed — automated captures, not human-verified |
 | `validation/screenshots/responsive-ui-reexecution/run-results.json` | Machine-readable results | Filed — all 10 checks PASS, overflow=false |
