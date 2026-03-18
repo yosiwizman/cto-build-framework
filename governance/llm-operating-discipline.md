@@ -150,6 +150,12 @@ Verification is not a phase that happens at the end. It is a continuous practice
 
 **The failure mode this prevents:** "It was working three days ago and now it's broken and nobody knows what changed." Continuous verification means you know exactly what changed, when it changed, and whether the change was verified.
 
+**Verification method hierarchy.** Not all verification methods are equivalent. The correct hierarchy is:
+
+1. **Tool-based verification first.** Playwright, browser automation, screenshots via headless browser, element interaction checks, and CI runs are the default verification path for UI and functional claims. They run repeatably, produce traceable artifacts, and catch regressions automatically.
+2. **Manual human review for cases tool verification cannot close.** Physical-device-specific claims (device name, OS, browser recorded), subjective visual approval, and any claim that requires a real user on a real device require manual human verification. Tool-based verification does not substitute for this.
+3. **Playwright headless ≠ physical device.** A passing Playwright run does not establish that the software was verified on a named physical device with a named OS and browser. These are distinct claims. Do not conflate them. The scope note in `validation/domain-matrix.md` for Responsive UI exists because device details were not recorded during the original pilots — tool automation cannot close that gap retroactively.
+
 **The principle:** Verify green before proceeding. Every slice, every session, every handoff. Verification is not overhead — it is the mechanism that makes every subsequent step reliable.
 
 ---
