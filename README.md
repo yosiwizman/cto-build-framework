@@ -71,9 +71,9 @@ The governance system is designed for broader domains (backend services, authent
 |--------|--------|----------|-------|
 | CRUD / Local-State Applications | **Validated** | Pilot 1 — Task Tracker (10/10 MUST proven) | Core governance loop proven |
 | Client-Side Multi-Page Apps | **Validated** | Pilot 2 — Contact Manager (14/14 MUST proven) | Multi-page routing, shared state |
-| Search / Filtering | **Validated** | Pilot 2 — Contact Manager: real-time search, category filtering | Proven within client-side scope |
-| Form Validation | **Validated** | Pilot 2 — Contact Manager: email format validation | Client-side validation proven |
-| Responsive UI | **Validated** | Both pilots: founder-verified on desktop and mobile | Cross-device verification proven |
+| Search / Filtering | **Validated** | Pilot 2 — Contact Manager: real-time search, category filtering | Name/company search and single category filter proven; Pilot 2 contact manager only; in-memory/localStorage; server-side search, faceted search, and pagination not tested |
+| Form Validation | **Validated** | Pilot 2 — Contact Manager: email format validation | Client-side email format validation only (one field, one rule); no other field types, no required-field enforcement beyond email, no server-side validation tested |
+| Responsive UI | **Validated** | Both pilots: founder-verified on desktop and mobile | Founder-verified on desktop and mobile; device names, OS, and browser not recorded; physical device re-execution outstanding |
 | Authentication Systems | Untested | Doctrine exists. No project built under governance. | Domain overlay designed |
 | Backend / API Services | Untested | Doctrine exists. No project built under governance. | Architecture patterns documented |
 | Database Integration | Untested | Doctrine exists. No project built under governance. | Persistence layer untested beyond localStorage |
