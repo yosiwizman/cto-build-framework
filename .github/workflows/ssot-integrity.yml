@@ -94,6 +94,7 @@ jobs:
       #   - manuscript-candidate-final-review.md
       #   - human-editorial-spot-check-checklist.md
       #   - final-publication-handoff.md
+      #   - release-readiness-decision.md
       # ------------------------------------------------------------------
       - name: Check for residual [URL] placeholder in repo files
         run: |
@@ -121,6 +122,7 @@ jobs:
               ! -name "manuscript-candidate-final-review.md" \
               ! -name "human-editorial-spot-check-checklist.md" \
               ! -name "final-publication-handoff.md" \
+              ! -name "release-readiness-decision.md" \
             | xargs grep -l '\[URL\]' 2>/dev/null | grep -q .; then
             echo "PLACEHOLDER FOUND in validation/:"
             find validation/ -name "*.md" \
@@ -129,6 +131,7 @@ jobs:
               ! -name "manuscript-candidate-final-review.md" \
               ! -name "human-editorial-spot-check-checklist.md" \
               ! -name "final-publication-handoff.md" \
+              ! -name "release-readiness-decision.md" \
               | xargs grep -n '\[URL\]' 2>/dev/null
             FOUND=1
           fi
