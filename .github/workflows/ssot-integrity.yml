@@ -83,6 +83,17 @@ jobs:
       #
       # Scope: README.md, governance/, validation/
       # Does NOT scan manuscript files outside the repo.
+      #
+      # EXCLUSIONS: The following validation/ files are excluded from the
+      # scan because they are publication-audit-chain archival artifacts
+      # that legitimately contain [URL] as a documentary reference — they
+      # describe and record the placeholder's history, they do not contain
+      # an unresolved placeholder value.
+      #   - appendix-b-publication-audit.md
+      #   - manuscript-appendix-b-insertion-patch.md
+      #   - manuscript-candidate-final-review.md
+      #   - human-editorial-spot-check-checklist.md
+      #   - final-publication-handoff.md
       # ------------------------------------------------------------------
       - name: Check for residual [URL] placeholder in repo files
         run: |
@@ -102,10 +113,23 @@ jobs:
             FOUND=1
           fi
 
-          # Search validation/ directory (markdown files only)
-          if find validation/ -name "*.md" | xargs grep -l '\[URL\]' 2>/dev/null | grep -q .; then
+          # Search validation/ directory (markdown files only).
+          # Exclude publication-audit-chain files that document [URL] as history.
+          if find validation/ -name "*.md" \
+              ! -name "appendix-b-publication-audit.md" \
+              ! -name "manuscript-appendix-b-insertion-patch.md" \
+              ! -name "manuscript-candidate-final-review.md" \
+              ! -name "human-editorial-spot-check-checklist.md" \
+              ! -name "final-publication-handoff.md" \
+            | xargs grep -l '\[URL\]' 2>/dev/null | grep -q .; then
             echo "PLACEHOLDER FOUND in validation/:"
-            find validation/ -name "*.md" | xargs grep -n '\[URL\]' 2>/dev/null
+            find validation/ -name "*.md" \
+              ! -name "appendix-b-publication-audit.md" \
+              ! -name "manuscript-appendix-b-insertion-patch.md" \
+              ! -name "manuscript-candidate-final-review.md" \
+              ! -name "human-editorial-spot-check-checklist.md" \
+              ! -name "final-publication-handoff.md" \
+              | xargs grep -n '\[URL\]' 2>/dev/null
             FOUND=1
           fi
 
