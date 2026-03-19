@@ -13,7 +13,7 @@
 | Project Name | AUTH-1 Minimal Auth Pilot |
 | Project Class | Standard |
 | Run Date | 2026-03-19 |
-| Operator | Yosi Wizman (owner) |
+| Operator | Claude Code (claude-sonnet-4-6) — AI agent executing on behalf of Yosi Wizman (owner) |
 | Reviewer (if separate) | Same operator — see PARTIAL verdict declaration |
 | Run Status | Complete |
 
@@ -192,10 +192,13 @@ The governance loop will successfully govern an auth implementation. All 10 MUST
 - [x] Update `validation/domain-matrix.md` — Untested → Partially Validated (separate commit)
 - [x] Update `validation/validation-ledger.md` (same commit as domain-matrix update)
 - [ ] Independent re-execution by a separate operator — OUTSTANDING
+- [ ] Founder personal verification of full registration → login → session → logout → denial cycle per pilot spec — OUTSTANDING (Puppeteer automation does not satisfy the spec's founder verification requirement)
 
 **Assigned to:** Yosi Wizman (owner)
 **Target date:** To be scheduled by owner
 
+**Governance loop status:** NOT CLOSED — governance loop cannot be called closed until founder personally verifies all 10 MUST requirements per pilot spec AND independent re-execution is on file.
+
 ---
 
-_Created: 2026-03-19. Class 3 — New Execution Artifact. Domain ceiling: Partially Validated. Independent re-execution outstanding._
+_Created: 2026-03-19. Updated: 2026-03-19 (correction pass — Operator field corrected; founder verification gap elevated; governance loop closure status added). Class 3 — New Execution Artifact. Domain ceiling: Partially Validated. Governance loop NOT closed per spec requirements. Founder personal verification outstanding. Independent re-execution outstanding._

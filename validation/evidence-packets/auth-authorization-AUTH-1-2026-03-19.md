@@ -85,7 +85,9 @@ The CTO Build Framework governance loop successfully governs an Authentication /
 - [x] Partial — evidence captured by automated Puppeteer tests. Human founder verification of the live application UI is outstanding.
 - [ ] No
 
-**Founder verification notes:** All 10 MUST requirements were verified by Puppeteer browser automation with screenshots. The founding operator (Yosi Wizman) has not yet performed a manual walkthrough of the live application. This is noted as a gap; the automated evidence stands on its own as proof of behavior but does not substitute for the founder personally verifying the registration → login → session → logout → denial cycle as specified in the pilot spec. This gap must be resolved before the domain can be promoted to Validated.
+**Founder verification notes:** All 10 MUST requirements were verified by Puppeteer browser automation with screenshots. The founding operator (Yosi Wizman) has not yet performed a manual walkthrough of the live application.
+
+**Critical gap — spec requirement not satisfied:** The pilot spec (`validation/pilot-specs/AUTH-1-authentication-authorization.md`) lists "Founder verification" as the verification method for ALL 10 MUST requirements. The Founder Verification Requirements section of the spec requires: (a) "Founder verifies the full registration → login → session → logout → denial cycle personally" and (b) "Founder signs off on each MUST requirement individually in the evidence packet." Neither condition has been met. Puppeteer automation does not satisfy these requirements. The governance loop is NOT closed per spec requirements. This is not a minor gap — it is the primary outstanding condition for governance closure and domain promotion.
 
 ---
 
@@ -143,7 +145,8 @@ The CTO Build Framework governance loop successfully governs the construction an
 - That the framework handles OAuth, MFA, RBAC, or enterprise auth patterns
 - That the application is production-secure (self-review only; no professional audit)
 - That this result was independently reproduced by a party other than the builder
-- That the founder personally verified the application through manual use
+- That the founder personally verified the application through manual use (OUTSTANDING — required by pilot spec for all 10 MUST items)
+- That the governance loop is closed per spec requirements (it is NOT — founder verification and independent re-execution both outstanding)
 - That auth governance scales to production deployment conditions (TLS, reverse proxy, production secrets management)
 - That any other domain has been validated
 
@@ -167,4 +170,4 @@ The CTO Build Framework governance loop successfully governs the construction an
 
 ---
 
-_Created: 2026-03-19. Class 3 — New Execution Artifact. Domain ceiling: Partially Validated. Independent re-execution and founder manual verification outstanding._
+_Created: 2026-03-19. Updated: 2026-03-19 (correction pass). Class 3 — New Execution Artifact. Domain ceiling: Partially Validated. Governance loop NOT closed per spec requirements. Founder personal verification per spec outstanding (primary gap). Independent re-execution outstanding._

@@ -55,7 +55,7 @@
 | Finding | Severity | Required Action |
 |---------|---------|-----------------|
 | Same agent built and tested — no independent re-execution | Structural — governs domain ceiling | Accept as PARTIAL; document in all artifacts; independent re-execution required before Validated |
-| Founder has not personally performed manual verification | Non-blocking for initial proof | Document as gap; founder manual verification needed before Validated |
+| Founder has not personally performed manual verification per pilot spec | Primary outstanding condition — pilot spec lists "Founder verification" as verification method for ALL 10 MUST items; spec requires founder to personally verify full cycle and sign off on each MUST item individually | Document as primary gap; founder manual verification is a spec requirement for governance loop closure, not optional |
 | Self-review security only | Non-blocking for initial proof | State explicitly; professional audit strengthens the claim |
 | Username enumeration via /api/register ("Username already taken") | Advisory | Document as known limit; non-blocking for initial domain proof |
 | In-memory SQLite — no persistence across server restart | Advisory — out of scope | Acceptable for initial auth governance proof; production use requires persistent store |
@@ -80,8 +80,8 @@
 - [x] **PARTIAL** — evidence supports a more limited claim. Conditions:
   - The 10 MUST requirements were proven by automated Puppeteer tests with screenshot evidence. The governance loop demonstrably handles the auth domain.
   - The verdict is PARTIAL because: (a) the same agent built and tested (no independent re-execution); (b) security review is self-review level; (c) founder manual verification has not been performed.
-  - The domain may be promoted from Untested to Partially Validated on the basis of this evidence.
-  - The domain may NOT be promoted to Validated until: independent re-execution is on file, and founder has personally verified the application.
+  - The domain may be promoted from Untested to Partially Validated on the basis of this evidence. Partially Validated is the ceiling given: (a) same agent built and tested; (b) founder personal verification per spec is outstanding; (c) governance loop is not closed per spec requirements.
+  - The domain may NOT be promoted to Validated until: (1) founder personally verifies the full registration → login → session → logout → denial cycle per pilot spec and signs off on each MUST requirement individually; (2) independent re-execution by a separate operator is on file. Both conditions are required. Neither has been started.
 - [ ] **FAIL** — evidence does not support the claimed status.
 
 ---
@@ -90,8 +90,8 @@
 
 | Action | Owner | Deadline |
 |--------|-------|---------|
-| Independent re-execution by a separate operator | To be assigned by Yosi Wizman | Not yet scheduled |
-| Founder personal manual verification of the application | Yosi Wizman | Before Validated promotion |
+| Founder personally verifies full registration → login → session → logout → denial cycle per pilot spec, and signs off on each MUST requirement individually in the evidence packet | Yosi Wizman | Required before governance loop can be called closed |
+| Independent re-execution by a separate operator | To be assigned by Yosi Wizman | Required before Validated promotion |
 | Professional or peer security review (optional but strengthens claim) | To be assigned | Not required for Partially Validated |
 
 ---
@@ -108,4 +108,4 @@ Confirmation method: Automated test execution with screenshot evidence + structu
 
 ---
 
-_Created: 2026-03-19. PARTIAL verdict. Domain ceiling: Partially Validated. Independent re-execution and founder manual verification required before Validated promotion._
+_Created: 2026-03-19. Updated: 2026-03-19 (correction pass). PARTIAL verdict. Domain ceiling: Partially Validated. Governance loop NOT closed per spec requirements. Founder personal verification per spec outstanding (primary gap — pilot spec requires founder verification as verification method for all 10 MUST items). Independent re-execution outstanding. Both conditions required before Validated promotion._
