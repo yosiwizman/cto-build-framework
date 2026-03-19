@@ -46,6 +46,8 @@ This repo tracks a live, structured validation program. Domain statuses reflect 
 - Documentation alone is not proof — a written domain overlay does not validate that domain
 - The current validated range is narrow (Standard-class client-side applications). Acknowledge this honestly.
 - Claims expand through structured validation work, not through assertion
+- Multi-session continuity is not fully field-proven — it remains Partially Validated only until a complete governed multi-session run exists on file
+- The commercial release gate exists as doctrine but is not commercially field-proven across domains — only the personal-use gate has been exercised in the pilots
 
 ---
 
