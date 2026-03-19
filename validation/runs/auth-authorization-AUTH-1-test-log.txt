@@ -1,0 +1,45 @@
+[2026-03-19T04:11:52.093Z] === AUTH-1 Validation Run Starting ===
+[2026-03-19T04:11:52.094Z] Base URL: http://localhost:3847
+[2026-03-19T04:11:52.095Z] Node.js: v22.17.1
+[2026-03-19T04:11:52.188Z] 
+--- AUTH-1.01: User registration ---
+[2026-03-19T04:11:53.573Z] Screenshot saved: 01-after-register.png
+[2026-03-19T04:11:53.573Z] [PROVEN] AUTH-1.01 — User can register with credentials | Status: "Logged in as: alice"
+[2026-03-19T04:11:53.575Z] 
+--- AUTH-1.02: Credential hashing ---
+[2026-03-19T04:11:54.172Z] Screenshot saved: 02-hashed-credentials.png
+[2026-03-19T04:11:54.172Z] [PROVEN] AUTH-1.02 — Credentials stored hashed, never plaintext | Hash starts with $2a$, length 60, not plaintext
+[2026-03-19T04:11:54.174Z] 
+--- AUTH-1.03: Login with valid credentials ---
+[2026-03-19T04:11:57.110Z] Screenshot saved: 03-login-success.png
+[2026-03-19T04:11:57.110Z] [PROVEN] AUTH-1.03 — Login with valid credentials produces session | Status: "Logged in as: alice", connect.sid cookie present: true
+[2026-03-19T04:11:57.112Z] 
+--- AUTH-1.04: Invalid credentials rejected ---
+[2026-03-19T04:12:00.009Z] Screenshot saved: 04-invalid-credentials.png
+[2026-03-19T04:12:00.009Z] [PROVEN] AUTH-1.04 — Invalid credentials rejected | Result: "Invalid credentials", class: "result error", status: "Not logged in"
+[2026-03-19T04:12:00.010Z] 
+--- AUTH-1.05: Session persists across page refresh ---
+[2026-03-19T04:12:04.923Z] Screenshot saved: 05-after-refresh.png
+[2026-03-19T04:12:04.923Z] [PROVEN] AUTH-1.05 — Session persists across page refresh | Status after reload: "Logged in as: alice"
+[2026-03-19T04:12:04.925Z] 
+--- AUTH-1.06: Session persists across browser restart ---
+[2026-03-19T04:12:09.908Z] Screenshot saved: 06-after-browser-restart.png
+[2026-03-19T04:12:09.908Z] [PROVEN] AUTH-1.06 — Session persists across browser restart | Cookie restored, status: "Logged in as: alice"
+[2026-03-19T04:12:09.910Z] 
+--- AUTH-1.07: Logout invalidates session ---
+[2026-03-19T04:12:12.809Z] Screenshot saved: 07-after-logout.png
+[2026-03-19T04:12:12.809Z] [PROVEN] AUTH-1.07 — Logout invalidates session | Status: "Not logged in", /api/protected after logout: 401
+[2026-03-19T04:12:12.811Z] 
+--- AUTH-1.08: Protected route inaccessible without auth ---
+[2026-03-19T04:12:13.437Z] Screenshot saved: 08-protected-denied.png
+[2026-03-19T04:12:13.437Z] [PROVEN] AUTH-1.08 — Protected route inaccessible without auth | HTTP status: 401, body: {"error":"Authentication required"}
+[2026-03-19T04:12:13.438Z] 
+--- AUTH-1.09: Authorization restricts resource to owner ---
+[2026-03-19T04:12:17.697Z] Bob registration: status 200
+[2026-03-19T04:12:17.699Z] Bob's note ID: 1
+[2026-03-19T04:12:20.623Z] Screenshot saved: 09-authorization-denied.png
+[2026-03-19T04:12:20.623Z] [PROVEN] AUTH-1.09 — Authorization restricts resource to owner | Alice fetching Bob note 1: HTTP 403, "Access denied"
+[2026-03-19T04:12:20.624Z] 
+--- AUTH-1.10: Expired/invalid session tokens rejected ---
+[2026-03-19T04:12:22.741Z] Screenshot saved: 10-invalid-session-rejected.png
+[2026-03-19T04:12:22.741Z] [PROVEN] AUTH-1.10 — Expired/invalid session tokens rejected | Tampered cookie: status "Not logged in", /api/protected: 401
