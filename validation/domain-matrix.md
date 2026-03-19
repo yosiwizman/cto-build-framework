@@ -20,7 +20,7 @@ This document tracks the validation status of the CTO Build Framework across all
 | Form Validation | **Validated** | Pilot 2 — contact manager | Email format validation proven |
 | Responsive UI (Desktop + Mobile) | **Validated** | Pilot 1 (task tracker) + Pilot 2 (contact manager) | Founder-verified on desktop and mobile |
 | Multi-Session Continuity | Partially Validated | Doctrine tested; both pilots completed in single sessions | Handoff protocol designed, not fully exercised |
-| Authentication / Authorization | Untested | Doctrine exists | Domain overlay designed, no project built |
+| Authentication / Authorization | Partially Validated | AUTH-1 pilot — 10/10 MUST proven by Puppeteer automation (not founder-personal verification per spec). Founder verification per spec outstanding. Independent re-execution outstanding. Governance loop not closed per spec requirements. | Basic username/password auth with bcrypt + express-session. No OAuth, MFA, or RBAC. Security self-review only. Promotion to Validated requires: (1) founder personally verifies full cycle per pilot spec; (2) independent re-execution by separate operator. |
 | Backend / API / Database | Untested | Doctrine exists | Architecture patterns documented |
 | External Integrations (Third-Party APIs) | Untested | No doctrine | API consumption untested |
 | Real-Time / Event-Driven | Untested | No doctrine | WebSocket/SSE undocumented |
