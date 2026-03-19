@@ -84,19 +84,21 @@ jobs:
       # Scope: README.md, governance/, validation/
       # Does NOT scan manuscript files outside the repo.
       #
-      # EXCLUSIONS: The following validation/ files are excluded from the
-      # scan because they are publication-audit-chain archival artifacts
-      # that legitimately contain [URL] as a documentary reference — they
-      # describe and record the placeholder's history, they do not contain
-      # an unresolved placeholder value.
-      #   - appendix-b-publication-audit.md
-      #   - manuscript-appendix-b-insertion-patch.md
-      #   - manuscript-candidate-final-review.md
-      #   - human-editorial-spot-check-checklist.md
-      #   - final-publication-handoff.md
-      #   - release-readiness-decision.md
-      #   - project-closeout-index.md
-      #   - human-editorial-spot-check-record-template.md
+      # VALIDATION/ SCAN SCOPE:
+      #   Only validation/appendix-b-source.md is checked here.
+      #   Rationale: it is the only validation/ file that contains a live
+      #   companion-framework URL and directly feeds manuscript content.
+      #   An unresolved [URL] there would propagate to the published book.
+      #
+      #   All other validation/ files either:
+      #     (a) contain no URL fields at all (domain-matrix, ledger, etc.)
+      #     (b) contain [URL] as a documentary reference to the historical
+      #         placeholder — audit logs, patch files, checklists, review
+      #         records. These are not scanned because they are archival
+      #         artifacts, not live source files.
+      #
+      #   This targeted approach eliminates the growing filename exclusion
+      #   list: new documentary files need no exclusion entry.
       # ------------------------------------------------------------------
       - name: Check for residual [URL] placeholder in repo files
         run: |
@@ -116,29 +118,12 @@ jobs:
             FOUND=1
           fi
 
-          # Search validation/ directory (markdown files only).
-          # Exclude publication-audit-chain files that document [URL] as history.
-          if find validation/ -name "*.md" \
-              ! -name "appendix-b-publication-audit.md" \
-              ! -name "manuscript-appendix-b-insertion-patch.md" \
-              ! -name "manuscript-candidate-final-review.md" \
-              ! -name "human-editorial-spot-check-checklist.md" \
-              ! -name "final-publication-handoff.md" \
-              ! -name "release-readiness-decision.md" \
-              ! -name "project-closeout-index.md" \
-              ! -name "human-editorial-spot-check-record-template.md" \
-            | xargs grep -l '\[URL\]' 2>/dev/null | grep -q .; then
-            echo "PLACEHOLDER FOUND in validation/:"
-            find validation/ -name "*.md" \
-              ! -name "appendix-b-publication-audit.md" \
-              ! -name "manuscript-appendix-b-insertion-patch.md" \
-              ! -name "manuscript-candidate-final-review.md" \
-              ! -name "human-editorial-spot-check-checklist.md" \
-              ! -name "final-publication-handoff.md" \
-              ! -name "release-readiness-decision.md" \
-              ! -name "project-closeout-index.md" \
-              ! -name "human-editorial-spot-check-record-template.md" \
-              | xargs grep -n '\[URL\]' 2>/dev/null
+          # Search validation/appendix-b-source.md only.
+          # This is the live SSOT source for manuscript Appendix B — the one
+          # validation/ file where an unresolved [URL] would be unsafe.
+          if grep -q '\[URL\]' validation/appendix-b-source.md 2>/dev/null; then
+            echo "PLACEHOLDER FOUND in: validation/appendix-b-source.md"
+            grep -n '\[URL\]' validation/appendix-b-source.md
             FOUND=1
           fi
 
