@@ -1,0 +1,76 @@
+{
+  "results": [
+    {
+      "id": "AUTH-1.01",
+      "description": "User can register with credentials",
+      "result": "PROVEN",
+      "evidence": "01-after-register.png",
+      "notes": "Status: \"Logged in as: alice\""
+    },
+    {
+      "id": "AUTH-1.02",
+      "description": "Credentials stored hashed, never plaintext",
+      "result": "PROVEN",
+      "evidence": "02-hashed-credentials.png",
+      "notes": "Hash starts with $2a$, length 60, not plaintext"
+    },
+    {
+      "id": "AUTH-1.03",
+      "description": "Login with valid credentials produces session",
+      "result": "PROVEN",
+      "evidence": "03-login-success.png",
+      "notes": "Status: \"Logged in as: alice\", connect.sid cookie present: true"
+    },
+    {
+      "id": "AUTH-1.04",
+      "description": "Invalid credentials rejected",
+      "result": "PROVEN",
+      "evidence": "04-invalid-credentials.png",
+      "notes": "Result: \"Invalid credentials\", class: \"result error\", status: \"Not logged in\""
+    },
+    {
+      "id": "AUTH-1.05",
+      "description": "Session persists across page refresh",
+      "result": "PROVEN",
+      "evidence": "05-after-refresh.png",
+      "notes": "Status after reload: \"Logged in as: alice\""
+    },
+    {
+      "id": "AUTH-1.06",
+      "description": "Session persists across browser restart",
+      "result": "PROVEN",
+      "evidence": "06-after-browser-restart.png",
+      "notes": "Cookie restored, status: \"Logged in as: alice\""
+    },
+    {
+      "id": "AUTH-1.07",
+      "description": "Logout invalidates session",
+      "result": "PROVEN",
+      "evidence": "07-after-logout.png",
+      "notes": "Status: \"Not logged in\", /api/protected after logout: 401"
+    },
+    {
+      "id": "AUTH-1.08",
+      "description": "Protected route inaccessible without auth",
+      "result": "PROVEN",
+      "evidence": "08-protected-denied.png",
+      "notes": "HTTP status: 401, body: {\"error\":\"Authentication required\"}"
+    },
+    {
+      "id": "AUTH-1.09",
+      "description": "Authorization restricts resource to owner",
+      "result": "PROVEN",
+      "evidence": "09-authorization-denied.png",
+      "notes": "Alice fetching Bob note 1: HTTP 403, \"Access denied\""
+    },
+    {
+      "id": "AUTH-1.10",
+      "description": "Expired/invalid session tokens rejected",
+      "result": "PROVEN",
+      "evidence": "10-invalid-session-rejected.png",
+      "notes": "Tampered cookie: status \"Not logged in\", /api/protected: 401"
+    }
+  ],
+  "gate": "PASS",
+  "timestamp": "2026-03-19T04:12:22.773Z"
+}
