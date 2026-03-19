@@ -81,13 +81,34 @@ The CTO Build Framework governance loop successfully governs an Authentication /
 
 ## 5. Founder Verification
 
-- [ ] Yes — verified on the following device(s):
-- [x] Partial — evidence captured by automated Puppeteer tests. Human founder verification of the live application UI is outstanding.
+- [ ] Yes — all 10 MUST items verified personally
+- [x] Partial — founder performed live browser verification on 2026-03-19; 4 of 10 items confirmed; 6 items NOT TESTED in this session
 - [ ] No
 
-**Founder verification notes:** All 10 MUST requirements were verified by Puppeteer browser automation with screenshots. The founding operator (Yosi Wizman) has not yet performed a manual walkthrough of the live application.
+**Founder verification date:** 2026-03-19
+**Device:** Local Threadripper environment (browser-based verification, http://localhost:3847)
+**Verified by:** Yosi Wizman (founder)
 
-**Critical gap — spec requirement not satisfied:** The pilot spec (`validation/pilot-specs/AUTH-1-authentication-authorization.md`) lists "Founder verification" as the verification method for ALL 10 MUST requirements. The Founder Verification Requirements section of the spec requires: (a) "Founder verifies the full registration → login → session → logout → denial cycle personally" and (b) "Founder signs off on each MUST requirement individually in the evidence packet." Neither condition has been met. Puppeteer automation does not satisfy these requirements. The governance loop is NOT closed per spec requirements. This is not a minor gap — it is the primary outstanding condition for governance closure and domain promotion.
+**Per-requirement founder sign-off:**
+
+| ID | Requirement | Founder Result | Notes |
+|----|-------------|---------------|-------|
+| AUTH-1.01 | User registration | **PASS** | Founder reported: "Registration: PASS" |
+| AUTH-1.02 | Credentials stored hashed (debug endpoint check) | **NOT TESTED** | Founder did not report checking /api/debug/users for hash format |
+| AUTH-1.03 | Valid login produces session | **PASS** | Founder reported: "Login: PASS" |
+| AUTH-1.04 | Invalid credentials rejected | **NOT TESTED** | Founder did not report testing wrong-password login |
+| AUTH-1.05 | Session persists across page refresh | **NOT TESTED** | Not reported |
+| AUTH-1.06 | Session persists across browser restart | **NOT TESTED** | Not reported |
+| AUTH-1.07 | Logout invalidates session | **PASS** | Founder reported: "Logout: PASS" |
+| AUTH-1.08 | Protected route blocked when logged out | **PASS** | Founder reported: "Unauthorized access returns 401 when not authenticated: PASS" |
+| AUTH-1.09 | Authorization: wrong user denied (cross-user access) | **NOT TESTED** | Founder reported "Notes creation and visibility: PASS" — confirms notes work for owner; cross-user denial (bob fetching alice's note) not explicitly tested |
+| AUTH-1.10 | Tampered session token rejected | **NOT TESTED** | Not reported |
+
+**Founder note on record:** "401 on /api/me observed when unauthenticated — expected behavior, not a failure."
+
+**Outstanding items:** AUTH-1.02, AUTH-1.04, AUTH-1.05, AUTH-1.06, AUTH-1.09, AUTH-1.10 remain NOT TESTED by founder. These items were proven by Puppeteer automation in the original run; founder personal sign-off on each is still outstanding per pilot spec requirements.
+
+**Governance loop status:** PARTIALLY CLOSED — founder has personally verified 4 of 10 MUST items. Full closure requires founder sign-off on all 10. Independent re-execution remains outstanding.
 
 ---
 
@@ -145,8 +166,8 @@ The CTO Build Framework governance loop successfully governs the construction an
 - That the framework handles OAuth, MFA, RBAC, or enterprise auth patterns
 - That the application is production-secure (self-review only; no professional audit)
 - That this result was independently reproduced by a party other than the builder
-- That the founder personally verified the application through manual use (OUTSTANDING — required by pilot spec for all 10 MUST items)
-- That the governance loop is closed per spec requirements (it is NOT — founder verification and independent re-execution both outstanding)
+- That the founder has personally verified ALL 10 MUST items (4 of 10 verified 2026-03-19; AUTH-1.02, 1.04, 1.05, 1.06, 1.09, 1.10 NOT TESTED by founder — Puppeteer evidence covers those items but founder sign-off is outstanding)
+- That the governance loop is fully closed per spec requirements (it is NOT — 6 founder sign-offs outstanding; independent re-execution outstanding)
 - That auth governance scales to production deployment conditions (TLS, reverse proxy, production secrets management)
 - That any other domain has been validated
 
@@ -157,7 +178,7 @@ The CTO Build Framework governance loop successfully governs the construction an
 | Limit | Impact | Status |
 |-------|--------|--------|
 | Same agent built and tested (no independent re-execution) | Domain ceiling is Partially Validated, not Validated | Accepted — stated in all artifacts |
-| Founder has not personally performed manual verification | PARTIAL verdict on founder verification | Needs follow-up |
+| Founder performed partial manual verification (4 of 10 MUST items) on 2026-03-19 | 6 items (AUTH-1.02, 1.04, 1.05, 1.06, 1.09, 1.10) not personally verified by founder — Puppeteer evidence covers these; founder sign-off outstanding | Partially resolved — follow-up needed for remaining 6 items |
 | Self-review security (no professional audit) | Security claim is bounded to checklist-level | Accepted — stated explicitly |
 | Username enumeration via /api/register endpoint | Minor information leakage; non-blocking for initial domain proof | Accepted |
 | In-memory SQLite (no persistence across restarts) | Not a test-validity issue but limits the realistic deployment claim | Accepted — out of scope for initial proof |
@@ -170,4 +191,4 @@ The CTO Build Framework governance loop successfully governs the construction an
 
 ---
 
-_Created: 2026-03-19. Updated: 2026-03-19 (correction pass). Class 3 — New Execution Artifact. Domain ceiling: Partially Validated. Governance loop NOT closed per spec requirements. Founder personal verification per spec outstanding (primary gap). Independent re-execution outstanding._
+_Created: 2026-03-19. Updated: 2026-03-19 (correction pass). Updated: 2026-03-19 (founder verification pass — 4 of 10 MUST items personally verified by Yosi Wizman; AUTH-1.02, 1.04, 1.05, 1.06, 1.09, 1.10 NOT TESTED by founder). Class 3 — New Execution Artifact. Domain ceiling: Partially Validated. Governance loop partially closed — 6 founder sign-offs and independent re-execution outstanding._
